@@ -8,7 +8,7 @@ sunghyouk.github.io 에 블로그를 만들고, 처음 github를 시작합니다
 Hi there 👋
 
 - 🔭 I’m currently working: on Biomedical engineering, College of Medicine, Seoul National University
-- 🌱 I’m currently learning: machine learning과 deep learning을 위해 `python`을 배우고 있습니다.
+- 🌱 I’m currently learning: machine learning과 deep learning을 위해 `python`을 공부하고 있습니다.
 
 ## 1. Repositories
 
