@@ -1,9 +1,0 @@
-echo .DS_Store >> ~/.gitignore_global
-
-# custom ignore file
-*.DS_Store
-*.csv
-*.docx
-*.pdf
-*.xlsx
-*.gz
