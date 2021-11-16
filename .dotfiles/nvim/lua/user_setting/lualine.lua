@@ -1,14 +1,12 @@
 local lualine = require('lualine')
 
-lualine.setup {}
-
-require'lualine'.setup {
+lualine.setup {
   options = {
     icons_enabled = true,
     theme = 'nord',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
-    disabled_filetypes = {"toggleterm", "nerdtree", "vista_kind"},
+    disabled_filetypes = {"toggleterm", "NvimTree", "vista_kind"},
     always_divide_middle = true,
     extensions = {"fugitive"},
   },
@@ -32,4 +30,3 @@ require'lualine'.setup {
   tabline = {},
   extensions = {}
 }
-

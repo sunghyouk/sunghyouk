@@ -4,36 +4,40 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'airblade/vim-rooter' " change the project directory, freely
   
-    " Plugin for file/class/function searching
+    " Plugin for file/class/function/variable/tags searching
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'liuchengxu/vista.vim' " WARN: optional plugin is needed all
 
-    " Plugin for string searching
+    " Plugin for string/grep/file searching
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
-    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', and other plugin
     Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag install needed in terminal
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE for use telescope, needed
 
-    " Plugin for todo comments
+    " Plugin for todo
     Plug 'folke/todo-comments.nvim' " WARN: ripgrep, rg, ag install needed in terminal
-    Plug 'folke/trouble.nvim'
+    Plug 'folke/trouble.nvim' " NOTE: It is needed for 'todo-comments'
 
-    " Plugin for auto-completion
-    " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    " Plugin for coding
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'scrooloose/syntastic' " grammar check for separate window
+    Plug 'tpope/vim-commentary' " space + /
+    Plug 'lukas-reineke/indent-blankline.nvim'
+
+    " Plugin for LSP/complete suggestion
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'onsails/lspkind-nvim'
 
     " Plugin for git
     Plug 'tpope/vim-fugitive' " enable Git (e.g., Gdiff)
-    Plug 'airblade/vim-gitgutter' " vim with git status (added, modified, and removed lines)
+    Plug 'lewis6991/gitsigns.nvim'
 
-    " Plugin for Passive setting
-    Plug 'blueyed/vim-diminactive'
-    Plug 'scrooloose/syntastic'
-    Plug 'tpope/vim-commentary' " space + /
-    Plug 'lukas-reineke/indent-blankline.nvim'
-    
     " Plugin for python REPL
     Plug 'jpalardy/vim-slime', { 'for': 'python' }
     Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
@@ -42,7 +46,10 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-
+    
+    " Plugin for Passive setting
+    Plug 'blueyed/vim-diminactive'
+    
     " Plugin for color scheme, status bar
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
@@ -56,7 +63,7 @@ lua require('user_setting')
 
 let g:loaded_perl_provider=0 " Perl provider disable
 
-" Setting for each plugin
+" Setting for each plugin excluding plugin maintained with lua
 
 " ==== ==== ==== ==== ==== setting for Vista from tagbar (from ctags to universal-tags)==== ==== ==== ==== ====
 " How each level is indented and what to prepend.
@@ -175,25 +182,6 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" ==== ==== ==== ==== ==== setting for Treesitter ==== ==== ==== ==== ====
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { "" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-EOF
-
-" no setting for git-fugitive
-" no setting for vim-gitgutter
 " ==== ==== ==== ==== ==== setting for nerdtree-git-plugin==== ==== ==== ==== ====
 "let g:NERDTreeGitStatusIndicatorMapCustom = {
 "                \ 'Modified'  :'✹',
@@ -226,8 +214,8 @@ let g:syntastic_python_python_exec='python3'
 let g:syntastic_python_checkers=['flake8']
 
 let g:syntastic_error_symbol = '✖'
-let g:syntastic_warning_symbol = '✗'
-let g:syntastic_style_error_symbol = '⚠'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '☒' " 'ℹ'
 
 highlight link SyntasticErrorSign SignColumn
@@ -326,14 +314,12 @@ let g:nord_italic=1
 let g:nord_italic_comments=1
 
 " Setting for keymap
-let mapleader=","
+let mapleader=" "
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-
-nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " keymap setting for MarkdownPreview
 nmap <Leader>mo :MarkdownPreview<CR>
@@ -362,7 +348,7 @@ set smartcase " ignore 옵션이 켜져있더라도 검색어에 대문자가 �
 
 " Indentation and Tab setting
 set autoindent " 새로운 라인이 추가될 때, 이전 라인의 들여쓰기에 자동으로 맞춤. (= ai)
-set textwidth=79 " lines longer than 79 columns will be broken
+set textwidth=119 " lines longer than 119 columns will be broken
 set expandtab  " Tab을 Space로 변경. (= et)
 set tabstop=4 " 탭으로 들여쓰기시 사용할 스페이스바 개수. (= ts)
 set shiftwidth=4 " <<, >> 으로 들여쓰기시 사용할 스페이스바 개수. (= sw)
