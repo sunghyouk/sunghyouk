@@ -65,46 +65,97 @@ let g:loaded_perl_provider=0 " Perl provider disable
 
 " Setting for each plugin excluding plugin maintained with lua
 
-" ==== ==== ==== ==== ==== setting for Vista from tagbar (from ctags to universal-tags)==== ==== ==== ==== ====
-" How each level is indented and what to prepend.
-" This could make the display more compact or more spacious.
-" e.g., more compact: ["▸ ", ""]
-" Note: this option only works for the kind renderer, not the tree renderer.
+" nvim-tree
+
+let g:nvim_tree_gitignore = 1 "0 by default
+let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
+let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
+let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
+let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
+let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
+let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
+let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
+let g:nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
+let g:nvim_tree_respect_buf_cwd = 1 "0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
+let g:nvim_tree_create_in_closed_folder = 0 "1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
+let g:nvim_tree_refresh_wait = 500 "1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
+let g:nvim_tree_window_picker_exclude = {
+    \   'filetype': [
+    \     'notify',
+    \     'packer',
+    \     'qf'
+    \   ],
+    \   'buftype': [
+    \     'terminal'
+    \   ]
+    \ }
+" Dictionary of buffer option names mapped to a list of option values that
+" indicates to the window picker that the buffer's window should not be
+" selectable.
+let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 } " List of filenames that gets highlighted with NvimTreeSpecialFile
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 0,
+    \ 'files': 0,
+    \ 'folder_arrows': 0,
+    \ }
+"If 0, do not show the icons for one of 'git' 'folder' and 'files'
+"1 by default, notice that if 'files' is 1, it will only display
+"if nvim-web-devicons is installed and on your runtimepath.
+"if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
+"but this will not work when you set indent_markers (because of UI conflict)
+
+" default will show icon by default if no icon is provided
+" default shows no icon by default
+let g:nvim_tree_icons = {
+    \ 'default': '',
+    \ 'symlink': '',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "",
+    \   'renamed': "➜",
+    \   'untracked': "★",
+    \   'deleted': "",
+    \   'ignored': "◌"
+    \   },
+    \ 'folder': {
+    \   'arrow_open': "",
+    \   'arrow_closed': "",
+    \   'default': "",
+    \   'open': "",
+    \   'empty': "",
+    \   'empty_open': "",
+    \   'symlink': "",
+    \   'symlink_open': "",
+    \   }
+    \ }
+
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
+" NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
+
+set termguicolors " this variable must be enabled for colors to be applied properly
+
+" a list of groups can be found at `:help nvim_tree_highlight`
+highlight NvimTreeFolderIcon guibg=blue
+
+" Vista from tagbar (from ctags to universal-tags)
+
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-" Executive used when opening vista sidebar without specifying it.
-" See all the avaliable executives via `:echo g:vista#executives`.
-let g:vista_default_executive = 'ctags'
-
-" Set the executive for some filetypes explicitly. Use the explicit executive
-" instead of the default one for these filetypes when using `:Vista` without
-" specifying the executive.
-let g:vista_executive_for = {
-  \ 'cpp': 'vim_lsp',
-  \ 'php': 'vim_lsp',
-  \ }
-
-" Declare the command including the executable and options used to generate ctags output
-" for some certain filetypes.The file path will be appened to your custom command.
-" For example:
-let g:vista_ctags_cmd = {
-      \ 'haskell': 'hasktags -x -o - -c',
-      \ }
-
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-" For example:
+let g:vista_default_executive = 'nvim_lsp'
 let g:vista_fzf_preview = ['right:50%']
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
-
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
 let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
 
-" ==== ==== ==== ==== ==== setting for fzf (from ctrlp) ==== ==== ==== ==== ====
+"  fzf (from ctrlp)
+
 " This is the default option:
 "   - Preview window on the right with 50% width
 "   - CTRL-/ will toggle preview window.
@@ -175,14 +226,16 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0) 
 
-" ==== ==== ==== ==== ==== setting for telescope ==== ==== ==== ==== ====
+" telescope
+
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" ==== ==== ==== ==== ==== setting for nerdtree-git-plugin==== ==== ==== ==== ====
+" nerdtree-git-plugin
+
 "let g:NERDTreeGitStatusIndicatorMapCustom = {
 "                \ 'Modified'  :'✹',
 "                \ 'Staged'    :'✚',
@@ -194,12 +247,15 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 "                \ 'Ignored'   :'☒',
 "                \ 'Clean'     :'✔︎',
 "                \ 'Unknown'   :'?',
+" 'ℹ'
 "                \ }
 
-" ==== ==== ==== ==== ==== setting for vim-diminactive==== ==== ==== ==== ====
+" vim-diminactive
+
 let g:diminactive_enable_focus=1
 
-" ==== ==== ==== ==== ==== setting for syntastic==== ==== ==== ==== ====
+" syntastic
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -216,20 +272,20 @@ let g:syntastic_python_checkers=['flake8']
 let g:syntastic_error_symbol = '✖'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '☒' " 'ℹ'
+let g:syntastic_style_warning_symbol = '☒' 
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-" ==== ==== ==== ==== ==== setting for commentary (from nerdcommenter)==== ==== ==== ==== ====
+" commentary (from nerdcommenter)
+
 nnoremap <space>/ :Commentary<CR>
 vnoremap <space>/ :Commentary<CR>
 
-" ==== ==== ==== ==== ==== setting for slime, ipython REPL==== ==== ==== ==== ====
-" use toggleterm: tmux --> neovim terminal
-" after toggleterm <c-\><c-n> :echo b:terminal_job_id :Slimeconfig
+" slime, ipython REPL
+
 let g:slime_target = 'tmux'
 let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 
@@ -237,10 +293,7 @@ let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_
 let g:slime_python_ipython = 1
 let g:slime_dont_ask_default = 1
 
-"------------------------------------------------------------------------------
 " ipython-cell configuration
-"------------------------------------------------------------------------------
-" Keyboard mappings.  is \ (backslash) by default
 
 " map <Leader>s to start IPython
 nnoremap <Leader>s :SlimeSend1 ipython --matplotlib<CR>
@@ -291,20 +344,14 @@ nmap <F10> :IPythonCellInsertBelow<CR>a
 imap <F9> <C-o>:IPythonCellInsertAbove<CR>
 imap <F10> <C-o>:IPythonCellInsertBelow<CR>
 
-" ==== ==== ==== ==== ==== setting for Codi ==== ==== ==== ==== ====
+" Codi
 " Change the color
 highlight CodiVirtualText guifg=cyan
-
 let g:codi#virtual_text_prefix = "❯ "
 
-"let g:codi#aliases = {
-"                   \ 'javascript.jsx': 'javascript',
-"                   \ }
-
 " Color scheme
-" substitute for lua/lualine
 
-" ==== ==== ==== ==== ==== setting for nord ==== ==== ==== ==== ====
+" nord
 colorscheme nord " color scheme
 let g:nord_cursor_line_number_background = 1
 let g:nord_uniform_status_lines = 1
@@ -321,7 +368,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-" keymap setting for MarkdownPreview
+" MarkdownPreview
 nmap <Leader>mo :MarkdownPreview<CR>
 nmap <Leader>ms :MarkdownPreviewStop<CR>
 nmap <Leader>mt :MarkdownPreviewToggle<CR>
@@ -362,6 +409,7 @@ set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
 set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백스페이스로 지움.
 set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
 set pastetoggle=<F3> " paste 옵션이 적용되면 들여쓰기가 제대로 작동하지 않기 때문에 toggle식으로 옵션을 키고 끌 수 있음.
+set fileencodings=utf-8
 
 " autocommand
 autocmd VimEnter *
@@ -375,11 +423,3 @@ au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \ exe "norm g`\"" |
 \ endif
-
-" 파일 인코딩을 한국어로
-set fileencodings=utf-8
-
-" Or if you have Neovim >= 0.1.5
-if (has("termguicolors"))
-set termguicolors
-endif
