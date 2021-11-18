@@ -1,6 +1,6 @@
 # Readme
 
-## 0. Intro
+## Intro
 
 2021-09-15 (Wed) 15:11
 sunghyouk.github.io 에 블로그를 만들고, 처음 github를 시작합니다.
@@ -10,9 +10,13 @@ Hi there 👋
 - 🔭 I’m currently working: on Biomedical engineering, College of Medicine, Seoul National University
 - 🌱 I’m currently learning: machine learning과 deep learning을 위해 `python`을 공부하고 있습니다.
 
-## 1. Repositories
+## Repositories
 
 공부하는 책의 코드를 올리거나 책에서 제공하는 코드가 있는 repository들의 목록입니다.
+
+### dotfiles
+
+neovim의 `init.vim`, tmux의 config file 등을 저장해 놓았습니다.
 
 ### study_room
 
