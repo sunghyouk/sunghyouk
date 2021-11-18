@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
-    Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', and other plugin
+    Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns'
     Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag install needed in terminal
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE for use telescope, needed
 
@@ -39,8 +39,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'lewis6991/gitsigns.nvim'
 
     " Plugin for python REPL
-    Plug 'jpalardy/vim-slime', { 'for': 'python' }
-    Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+    "Plug 'jpalardy/vim-slime', { 'for': 'python' }
+    "Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
     Plug 'metakirby5/codi.vim'
     Plug 'akinsho/toggleterm.nvim'
 
@@ -63,10 +63,8 @@ lua require('user_setting')
 
 let g:loaded_perl_provider=0 " Perl provider disable
 
-" Setting for each plugin excluding plugin maintained with lua
-
-" nvim-tree
-
+" =====Setting for each plugin excluding plugin maintained with lua
+" =====nvim-tree
 let g:nvim_tree_gitignore = 1 "0 by default
 let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
@@ -137,14 +135,12 @@ nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
 " NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
-
 set termguicolors " this variable must be enabled for colors to be applied properly
 
 " a list of groups can be found at `:help nvim_tree_highlight`
 highlight NvimTreeFolderIcon guibg=blue
 
-" Vista from tagbar (from ctags to universal-tags)
-
+" =====Vista from tagbar (from ctags to universal-tags)
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_default_executive = 'nvim_lsp'
 let g:vista_fzf_preview = ['right:50%']
@@ -154,8 +150,7 @@ let g:vista#renderer#icons = {
 \   "variable": "\uf71b",
 \  }
 
-"  fzf (from ctrlp)
-
+" =====fzf (from ctrlp)
 " This is the default option:
 "   - Preview window on the right with 50% width
 "   - CTRL-/ will toggle preview window.
@@ -227,33 +222,15 @@ command! -bang -nargs=* GGrep
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0) 
 
 " telescope
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <C-p> :Telescope find_files<cr>
+nnoremap <C-g> :Telescope live_grep<cr>
+nnoremap <C-b> :Telescope buffers<cr>
+nnoremap <C-t> :Telescope help_tags<cr>
 
-" nerdtree-git-plugin
-
-"let g:NERDTreeGitStatusIndicatorMapCustom = {
-"                \ 'Modified'  :'✹',
-"                \ 'Staged'    :'✚',
-"                \ 'Untracked' :'✭',
-"                \ 'Renamed'   :'➜',
-"                \ 'Unmerged'  :'═',
-"                \ 'Deleted'   :'✖',
-"                \ 'Dirty'     :'✗',
-"                \ 'Ignored'   :'☒',
-"                \ 'Clean'     :'✔︎',
-"                \ 'Unknown'   :'?',
-" 'ℹ'
-"                \ }
-
-" vim-diminactive
-
+" =====vim-diminactive
 let g:diminactive_enable_focus=1
 
-" syntastic
-
+" =====syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -277,13 +254,11 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-" commentary (from nerdcommenter)
+" =====commentary (from nerdcommenter)
+nnoremap <Leader>/ :Commentary<CR>
+vnoremap <Leader>/ :Commentary<CR>
 
-nnoremap <space>/ :Commentary<CR>
-vnoremap <space>/ :Commentary<CR>
-
-" slime, ipython REPL
-
+" =====slime, ipython REPL
 let g:slime_target = 'tmux'
 let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 
@@ -291,8 +266,7 @@ let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_
 let g:slime_python_ipython = 1
 let g:slime_dont_ask_default = 1
 
-" ipython-cell configuration
-
+" =====ipython-cell configuration
 " map <Leader>s to start IPython
 nnoremap <Leader>s :SlimeSend1 ipython --matplotlib<CR>
 
@@ -342,14 +316,13 @@ nmap <F10> :IPythonCellInsertBelow<CR>a
 imap <F9> <C-o>:IPythonCellInsertAbove<CR>
 imap <F10> <C-o>:IPythonCellInsertBelow<CR>
 
-" Codi
+" =====Codi
 " Change the color
 highlight CodiVirtualText guifg=cyan
 let g:codi#virtual_text_prefix = "❯ "
 
-" Color scheme
-
-" nord
+" =====Color scheme
+" =====nord
 colorscheme nord " color scheme
 let g:nord_cursor_line_number_background = 1
 let g:nord_uniform_status_lines = 1
@@ -358,25 +331,30 @@ let g:nord_uniform_diff_background = 1
 let g:nord_italic=1
 let g:nord_italic_comments=1
 
-" Setting for keymap
-let mapleader=" "
+" =====Setting for keymap
+let mapleader = ' '
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-" MarkdownPreview
+nmap <Leader>1 :bp<CR>
+nmap <Leader>2 :bn<CR>
+nmap <C-w> :bd<CR>
+
+" =====MarkdownPreview
 nmap <Leader>mo :MarkdownPreview<CR>
 nmap <Leader>ms :MarkdownPreviewStop<CR>
 nmap <Leader>mt :MarkdownPreviewToggle<CR>
 
-" <ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
+" =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
 tnoremap <silent><ESC> <C-\><C-n>
 
-" Custom setting
+" =====Custom setting
 syntax on " 형식별 구문 강조 표시
 set number " 라인 넘버 표시. (= nu)
+set signcolumn=number
 set showcmd " 사용자가 입력한 명령어 표시
 set showmatch " 현재 선택된 괄호의 쌍을 표시
 set relativenumber " 커서를 기준으로 라인 넘버 표시. 커서 위치에 따라 바뀜. (= rnu)
