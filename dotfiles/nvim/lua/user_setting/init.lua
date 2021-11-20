@@ -21,3 +21,4 @@ require('user_setting/treesitter')
 
 -- for coding: LSP, autocomplete
 require('user_setting/lsp')
+require('user_setting/iron')
