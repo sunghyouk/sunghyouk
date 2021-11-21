@@ -280,7 +280,7 @@ let g:nord_italic=1
 let g:nord_italic_comments=1
 
 " =====Setting for keymap
-let mapleader = ' '
+let mapleader = '\<space>'
 let maplocalleader = '\\'
 
 noremap <C-h> <C-w>h
