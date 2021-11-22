@@ -3,7 +3,7 @@ local iron = require('iron')
 iron.core.add_repl_definitions {
     r = {
         radian = {
-            command = {'radian'}
+            command = {'radian', '--r-binary=/usr/local/bin/R'}
         }
     }
 }
