@@ -82,8 +82,6 @@ let g:startify_change_to_vcs_root = 0
 let g:startify_padding_left = 4
 let g:startify_session_autoload = 0
 let g:startify_session_dir = '~/.vim/session'
-" let g:startify_custom_header =
-"             \ startify#pad(split(system('figlet -f chunky technicaldc'), '\n'))
 
 let g:startify_lists = [
           \ { 'type': 'bookmarks', 'header': ['   BOOKMARKS:']      },
@@ -459,6 +457,7 @@ nmap <Leader>mt :MarkdownPreviewToggle<CR>
 tnoremap <silent><ESC> <C-\><C-n>
 
 " =====Custom setting
+set hidden
 syntax on " 형식별 구문 강조 표시
 set number " 라인 넘버 표시. (= nu)
 set signcolumn=number
@@ -493,13 +492,6 @@ set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백�
 set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
 set pastetoggle=<F3> " paste 옵션이 적용되면 들여쓰기가 제대로 작동하지 않기 때문에 toggle식으로 옵션을 키고 끌 수 있음.
 set fileencodings=utf-8
-
-" autocommand
-autocmd VimEnter *
-            \   if !argc()
-            \ |   Startify
-            \ |   wincmd w
-            \ | endif
 
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *

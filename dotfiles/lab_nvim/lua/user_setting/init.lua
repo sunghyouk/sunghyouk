@@ -25,3 +25,6 @@ require('user_setting/iron')
 
 -- for nvim-notify
 require('user_setting/notify')
+
+-- for toggleterm
+require('user_setting/toggleterm')
