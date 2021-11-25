@@ -7,3 +7,15 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
+
+" FIX: configuration modified in 25, Nov, 2021 through help file in Vista
+ 
+" similar option below, but this is higher priority
+let g:vista_vimwiki_executive = 'markdown'
+
+" For markdown and toc for vimwiki
+let g:vista_executive_for = {
+    \ 'vimwiki': 'markdown',
+    \ 'pandoc': 'markdown',
+    \ 'markdown': 'toc',
+    \ }
