@@ -40,7 +40,8 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for python REPL
     Plug 'hkupty/iron.nvim'
-    Plug 'metakirby5/codi.vim'
+    " Plug 'metakirby5/codi.vim'
+    Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
     " Plugin for markdown
@@ -69,11 +70,29 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
+" =====Call user lua setting
+lua require('user_setting')
+
+" =====Setting for each plugin to ~/.vim/vim-include/set-<plugin_name>.vim
+for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
+    execute "source " . include_file
+endfor
+
+" =====vim-diminactive
+let g:diminactive_enable_focus=1
+
+" =====Codi Change the color
+" highlight CodiVirtualText guifg=cyan
+" let g:codi#virtual_text_prefix = "❯ "
+
 let g:loaded_perl_provider=0 " Perl provider disable
 
 " =====Setting for keymap
-let mapleader = '\<space>'
+let mapleader = ','
 let maplocalleader = '\\'
+
+nnoremap <leader>st :Startify<CR>
+nnoremap <leader>v :Vista<CR>
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -92,7 +111,7 @@ nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
 
 " =====nvim-tree
-nnoremap <C-e> :NvimTreeToggle<CR>
+nnoremap <leader>nt :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>f :NvimTreeFindFile<CR>
 
@@ -125,6 +144,11 @@ vnoremap <Leader>/ :Commentary<CR>
 nmap <Leader>mo :MarkdownPreview<CR>
 nmap <Leader>ms :MarkdownPreviewStop<CR>
 nmap <Leader>mt :MarkdownPreviewToggle<CR>
+
+" =====Sniprun
+nmap <leader>ff <Plug>SnipRun
+nmap <leader>f <Plug>SnipRunOperator
+vmap f <Plug>SnipRun
 
 " =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
 tnoremap <silent><ESC> <C-\><C-n>
@@ -171,18 +195,3 @@ au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \ exe "norm g`\"" |
 \ endif
-
-" =====Call user lua setting
-lua require('user_setting')
-
-" =====Setting for each plugin to ~/.vim/vim-include/set-<plugin_name>.vim
-for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
-    execute "source " . include_file
-endfor
-
-" =====vim-diminactive
-let g:diminactive_enable_focus=1
-
-" =====Codi Change the color
-highlight CodiVirtualText guifg=cyan
-let g:codi#virtual_text_prefix = "❯ "
