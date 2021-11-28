@@ -22,9 +22,13 @@ require('user_setting/treesitter')
 -- for coding: LSP, autocomplete
 require('user_setting/lsp')
 require('user_setting/iron')
+require('user_setting/sniprun')
 
 -- for nvim-notify
 require('user_setting/notify')
 
 -- for toggleterm
 require('user_setting/toggleterm')
+
+-- for keybinding
+require('user_setting/keybinding')
