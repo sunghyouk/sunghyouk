@@ -1,4 +1,4 @@
---window appearance
+-- window appearance
 require('user_setting/lualine')
 require('user_setting/bufferline')
 require('user_setting/indent_blankline')
@@ -30,3 +30,5 @@ require('user_setting/notify')
 -- for toggleterm
 require('user_setting/toggleterm')
 
+-- for keybinding
+require('user_setting/keybinding')

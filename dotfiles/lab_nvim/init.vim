@@ -94,11 +94,6 @@ let maplocalleader = '\\'
 nnoremap <leader>st :Startify<CR>
 nnoremap <leader>v :Vista<CR>
 
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
 nmap <Leader>1 :bp<CR>
 nmap <Leader>2 :bn<CR>
 nmap <C-w> :bd<CR>
@@ -109,11 +104,6 @@ map <leader>b :Buffers<CR>
 nnoremap <leader>g :Rg<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
-
-" =====nvim-tree
-nnoremap <leader>nt :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>f :NvimTreeFindFile<CR>
 
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
