@@ -66,6 +66,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-entire'
     Plug 'kana/vim-textobj-user'
     Plug 'jiangmiao/auto-pairs'
+
+    " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
 call plug#end()
@@ -81,29 +83,11 @@ endfor
 " =====vim-diminactive
 let g:diminactive_enable_focus=1
 
-" =====Codi Change the color
-" highlight CodiVirtualText guifg=cyan
-" let g:codi#virtual_text_prefix = "❯ "
-
 let g:loaded_perl_provider=0 " Perl provider disable
 
 " =====Setting for keymap
-let mapleader = ','
-let maplocalleader = '\\'
 
-nnoremap <leader>st :Startify<CR>
-nnoremap <leader>v :Vista<CR>
-
-nmap <Leader>1 :bp<CR>
-nmap <Leader>2 :bn<CR>
-nmap <C-w> :bd<CR>
-
-" =====fzf
-map <C-f> :Files<CR>
-map <leader>b :Buffers<CR>
-nnoremap <leader>g :Rg<CR>
-nnoremap <leader>t :Tags<CR>
-nnoremap <leader>m :Marks<CR>
+" let maplocalleader = '\\'
 
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
@@ -119,21 +103,6 @@ nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
 nmap <LocalLeader>wt :VimwikiTable<CR>
 
 nmap <Tab>d 0f]lli__date<Space><esc>
-
-" =====telescope
-nnoremap <C-p> :Telescope find_files<cr>
-nnoremap <C-g> :Telescope live_grep<cr>
-nnoremap <C-b> :Telescope buffers<cr>
-nnoremap <C-t> :Telescope help_tags<cr>
-
-" =====commentary (from nerdcommenter)
-nnoremap <Leader>/ :Commentary<CR>
-vnoremap <Leader>/ :Commentary<CR>
-
-" =====MarkdownPreview
-nmap <Leader>mo :MarkdownPreview<CR>
-nmap <Leader>ms :MarkdownPreviewStop<CR>
-nmap <Leader>mt :MarkdownPreviewToggle<CR>
 
 " =====Sniprun
 nmap <leader>ff <Plug>SnipRun
