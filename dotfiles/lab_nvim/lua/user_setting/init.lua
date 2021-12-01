@@ -35,3 +35,9 @@ require('user_setting/keybinding')
 
 -- for which-key
 require('user_setting/whichkey')
+
+-- for DAP
+--require('user_setting/dap_install')
+--require('user_setting/dap')
+--require('user_setting/dap_py')
+--require('user_setting/dap_ui')

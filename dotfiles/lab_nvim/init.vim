@@ -40,11 +40,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'lewis6991/gitsigns.nvim'
 
     " Plugin for python REPL
-    " NOTE: now searching more perfect plugin
-    " TODO: install debug adapter protocol
     Plug 'hkupty/iron.nvim'
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
+
+    "Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
+    "Plug 'mfussenegger/nvim-dap-python'
+    "Plug 'rcarriga/nvim-dap-ui'
+    "Plug 'Pocco81/DAPInstall.nvim'
 
     " Plugin for markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }

@@ -51,9 +51,7 @@ map('n', '<leader>mt', ':MarkdownPreviewToggle<CR>', {noremap = true, silent = t
 
 -- NOTE: 이하 keymapping은 init.vim에 있음
 -- sniprun
-
 -- vimwiki
-
 -- iron (default key)
 
 -------------------------------------------------------------~
