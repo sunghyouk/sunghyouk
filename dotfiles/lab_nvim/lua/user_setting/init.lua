@@ -32,3 +32,6 @@ require('user_setting/toggleterm')
 
 -- for keybinding
 require('user_setting/keybinding')
+
+-- for which-key
+require('user_setting/whichkey')

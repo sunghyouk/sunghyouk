@@ -51,6 +51,7 @@ call plug#begin('~/.vim/plugged')
     
     " Plugin for Passive setting
     Plug 'blueyed/vim-diminactive'
+    Plug 'folke/which-key.nvim'
     
     " Plugin for color scheme, status bar
     Plug 'kyazdani42/nvim-web-devicons'
@@ -104,6 +105,16 @@ nmap <LocalLeader>wt :VimwikiTable<CR>
 
 nmap <Tab>d 0f]lli__date<Space><esc>
 
+" =====Modified Iron nvim keymap configuration
+nmap <localleader>t <Plug>(iron-send-motion)
+vmap <localleader>v <Plug>(iron-visual-send)
+nmap <localleader>r <Plug>(iron-repeat-cmd)
+nmap <localleader>l <Plug>(iron-send-line)
+nmap <localleader><CR> <Plug>(iron-cr)
+nmap <localleader>i <plug>(iron-interrupt)
+nmap <localleader>q <Plug>(iron-exit)
+nmap <localleader>c <Plug>(iron-clear)
+
 " =====Sniprun
 nmap <leader>ff <Plug>SnipRun
 nmap <leader>f <Plug>SnipRunOperator
@@ -148,7 +159,6 @@ set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백�
 set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
 set pastetoggle=<F3> " paste 옵션이 적용되면 들여쓰기가 제대로 작동하지 않기 때문에 toggle식으로 옵션을 키고 끌 수 있음.
 set fileencodings=utf-8
-set langmap=ㅁㅠㅊㅇㄷㄹㅎㅗㅑㅓㅏㅣㅡㅜㅐㅔㅂㄱㄴㅅㅕㅍㅈㅌㅛㅋ;abcdefghijklmnopqrstuvwxyz
 
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *

@@ -1,5 +1,5 @@
 vim.g.mapleader = ','
-vim.g.maplocalleader = '\\'
+vim.g.maplocalleader = ';'
 
 local map = vim.api.nvim_set_keymap
 
@@ -16,58 +16,61 @@ map('i', 'jk', '<ESC>', {noremap = true, silent = false})
 map('i', 'kj', '<ESC>', {noremap = true, silent = false})
 
 -- for plugin
--- -- nvim tree
+-- nvim tree
 map('n', '<leader>nt', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 map('n', '<leader>r', ':NvimTreeRefresh<CR>', {noremap = true, silent = true})
 map('n', '<leader>f', ':NvimTreeFindFile<CR>', {noremap = true, silent = true})
 
--- -- startify
+-- startify
 map('n', '<leader>st', ':Startify<CR>', {noremap = true, silent = true})
 
--- -- vista
+-- vista
 map('n', '<leader>v', ':Vista<CR>', {noremap = true, silent = true})
 
--- -- fzf
+-- fzf
 map('n', '<C-f>', ':Files<CR>', {noremap = true, silent =true})
 map('n', '<leader>b', ':Buffers<CR>', {noremap = true, silent =true})
 map('n', '<leader>g', ':Rg<CR>', {noremap = true, silent =true})
 map('n', '<leader>t', ':Tags<CR>', {noremap = true, silent =true})
 map('n', '<leader>m', ':Marks<CR>', {noremap = true, silent =true})
 
--- -- telescope
+-- telescope
 map('n', '<C-p>', ':Telescope find_files<CR>', {noremap = true, silent =true})
 map('n', '<C-g>', ':Telescope live_grep<CR>', {noremap = true, silent =true})
 map('n', '<C-b>', ':Telescope buffers<CR>', {noremap = true, silent =true})
 map('n', '<C-t>', ':Telescope help_tags<CR>', {noremap = true, silent =true})
 
--- -- commentary
+-- commentary
 map('n', '<leader>/', ':Commentary<CR>', {noremap = true, silent = true})
 map('v', '<leader>/', ':Commentary<CR>', {noremap = true, silent = true})
 
--- -- markdown preview
+-- markdown preview
 map('n', '<leader>mo', ':MarkdownPreview<CR>', {noremap = true, silent = true})
 map('n', '<leader>ms', ':MarkdownPreviewStop<CR>', {noremap = true, silent = true})
 map('n', '<leader>mt', ':MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
 
--- -- sniprun
+-- NOTE: 이하 keymapping은 init.vim에 있음
+-- sniprun
 
--- -- vimwiki
+-- vimwiki
 
--- -- iron (default key)
+-- iron (default key)
+
 -------------------------------------------------------------~
 -- LHS(default)     RHS                                  MODE~
 -------------------------------------------------------------~
---  ctr              |<Plug>(iron-send-motion)|              `n`
---  ctr              |<Plug>(iron-visual-send)|              `v`
+--  ctr             |<Plug>(iron-send-motion)|              `n`
+--  ctr             |<Plug>(iron-visual-send)|              `v`
 -- cp               |<Plug>(iron-repeat-cmd)|               `n`
 -- <localleader>sl  |<Plug>(iron-send-line)|                `n`
 -- c<CR>            |<Plug>(iron-cr)|                       `n`
 -- cst              |<Plug>(iron-interrupt)|                `n`
 -- cq               |<Plug>(iron-exit)|                     `n`
---cl               |<Plug>(iron-clear)|                    `n`
+--cl                |<Plug>(iron-clear)|                    `n`
 -------------------------------------------------------------~
 
--- -- lsp_config
+-- NOTE: lsp.lua에 설정되어 있음
+-- lsp_config
 -- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
