@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for coding
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'jose-elias-alvarez/null-ls.nvim'
     Plug 'scrooloose/syntastic' " grammar check for separate window
     Plug 'tpope/vim-commentary' " space + /
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -147,6 +148,7 @@ set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백�
 set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
 set pastetoggle=<F3> " paste 옵션이 적용되면 들여쓰기가 제대로 작동하지 않기 때문에 toggle식으로 옵션을 키고 끌 수 있음.
 set fileencodings=utf-8
+set langmap=ㅁㅠㅊㅇㄷㄹㅎㅗㅑㅓㅏㅣㅡㅜㅐㅔㅂㄱㄴㅅㅕㅍㅈㅌㅛㅋ;abcdefghijklmnopqrstuvwxyz
 
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *

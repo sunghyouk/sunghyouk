@@ -1,7 +1,11 @@
---lspconfig
+local cmp = require('cmp')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local lspkind = require('lspkind')
+local luasnip = require('luasnip')
 local nvim_lsp = require('lspconfig')
-local servers = {'pyright', 'r_language_server'}
+local null_ls = require('null-ls')
 
+--lspconfig
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = { noremap=true, silent=true }
@@ -23,6 +27,10 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+    -- Disable Autoformat
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -33,14 +41,38 @@ for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,
         on_attach = on_attach,
+        flags = {
+          debounce_text_changes = 150,
+        }
     }
 end
 
--- nvim-cmp
-local cmp = require('cmp')
-local lspkind = require('lspkind')
-local luasnip = require('luasnip')
+-- null-ls
+null_ls.config({
+  sources = {
+      -- prettierd is installed globally via npm
+      null_ls.builtins.formatting.prettierd
+  }
+})
 
+-- null-ls is a general purpose language server that doesn't need
+-- the same config as actual language servers like tsserver, so
+-- setup is a little different.
+nvim_lsp['null-ls'].setup({
+  on_attach = function(client, bufnr)
+      -- Autoformat
+      if client.resolved_capabilities.document_formatting then
+         vim.cmd [[augroup Format]]
+         vim.cmd [[autocmd! * <buffer>]]
+         vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+         vim.cmd [[augroup END]]
+      end
+      -- call local on_attach
+      return on_attach(client, bufnr)
+  end
+})
+
+-- nvim-cmp
 -- better autocompletion experience
 vim.o.completeopt = 'menuone,noselect'
 
@@ -50,6 +82,13 @@ cmp.setup {
 		format = lspkind.cmp_format()
 	},
 	mapping = {
+--    ['<C-p>'] = cmp.mapping.select_prev_item(),
+--    ['<C-n>'] = cmp.mapping.select_next_item(),
+--    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+--    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+--    ['<C-Space>'] = cmp.mapping.complete(),
+--    ['<C-e>'] = cmp.mapping.close(),
+
         -- Use Tab and shift-Tab to navigate autocomplete menu
         ['<Tab>'] = function(fallback)
             if cmp.visible() then
@@ -84,3 +123,12 @@ cmp.setup {
         { name = 'luasnip' },
     },
 }
+
+-- Diagnostics
+-- Set diganostic sign icons
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#change-diagnostic-symbols-in-the-sign-column-gutter
+local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+for type, icon in pairs(signs) do
+    local hl = "LspDiagnosticsSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
