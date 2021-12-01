@@ -39,8 +39,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'lewis6991/gitsigns.nvim'
 
     " Plugin for python REPL
+    " NOTE: now searching more perfect plugin
+    " TODO: install debug adapter protocol
     Plug 'hkupty/iron.nvim'
-    " Plug 'metakirby5/codi.vim'
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
@@ -59,7 +60,7 @@ call plug#begin('~/.vim/plugged')
     " Plugin for notify
     Plug 'rcarriga/nvim-notify'
 
-    "Plugin from John-grib
+    "Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
     Plug 'tpope/vim-surround'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'easymotion/vim-easymotion'
@@ -80,13 +81,11 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
-" =====vim-diminactive
 let g:diminactive_enable_focus=1
 
 let g:loaded_perl_provider=0 " Perl provider disable
 
 " =====Setting for keymap
-
 " let maplocalleader = '\\'
 
 " =====vimwiki
