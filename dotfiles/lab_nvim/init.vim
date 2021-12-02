@@ -66,12 +66,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'rcarriga/nvim-notify'
 
     "Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
-    Plug 'tpope/vim-surround'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'easymotion/vim-easymotion'
-    Plug 'kana/vim-textobj-entire'
-    Plug 'kana/vim-textobj-user'
-    Plug 'jiangmiao/auto-pairs'
+    " Plug 'tpope/vim-surround'
+    " Plug 'terryma/vim-multiple-cursors'
+    " Plug 'easymotion/vim-easymotion'
+    " Plug 'kana/vim-textobj-entire'
+    " Plug 'kana/vim-textobj-user'
+    " Plug 'jiangmiao/auto-pairs'
 
     " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
@@ -106,7 +106,7 @@ nmap <LocalLeader>wh <Plug>Vimwiki2HTML
 nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
 nmap <LocalLeader>wt :VimwikiTable<CR>
 
-nmap <Tab>d 0f]lli__date<Space><esc>
+" nmap <Tab>d 0f]lli__date<Space><esc>
 
 " =====Modified Iron nvim keymap configuration
 nmap <localleader>t <Plug>(iron-send-motion)

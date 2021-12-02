@@ -8,48 +8,48 @@ map('n', '<C-l>', '<C-w>l', {noremap = true, silent = false})
 map('n', '<C-j>', '<C-w>j', {noremap = true, silent = false})
 map('n', '<C-k>', '<C-w>k', {noremap = true, silent = false})
 
-map('n', '<leader>p', ':bp<CR>', {noremap = true, silent = false}) -- previous buffer
-map('n', '<leader>n', ':bn<CR>', {noremap = true, silent = false}) -- next buffer
-map('n', '<leader>d', ':bd<CR>', {noremap = true, silent = false}) -- close buffer
+map('n', '<leader>p', '<cmd>bp<CR>', {noremap = true, silent = false}) -- previous buffer
+map('n', '<leader>n', '<cmd>bn<CR>', {noremap = true, silent = false}) -- next buffer
+map('n', '<leader>d', '<cmd>bd<CR>', {noremap = true, silent = false}) -- close buffer
 
 map('i', 'jk', '<ESC>', {noremap = true, silent = false})
 map('i', 'kj', '<ESC>', {noremap = true, silent = false})
 
 -- for plugin
 -- nvim tree
-map('n', '<leader>nt', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
-map('n', '<leader>r', ':NvimTreeRefresh<CR>', {noremap = true, silent = true})
-map('n', '<leader>f', ':NvimTreeFindFile<CR>', {noremap = true, silent = true})
+map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
+map('n', '<leader>r', '<cmd>NvimTreeRefresh<CR>', {noremap = true, silent = true})
+map('n', '<leader>f', '<cmd>NvimTreeFindFile<CR>', {noremap = true, silent = true})
 
 -- startify
-map('n', '<leader>st', ':Startify<CR>', {noremap = true, silent = true})
+map('n', '<leader>s', '<cmd>Startify<CR>', {noremap = true, silent = true})
 
 -- vista
-map('n', '<leader>v', ':Vista<CR>', {noremap = true, silent = true})
+map('n', '<leader>v', '<cmd>Vista<CR>', {noremap = true, silent = true})
 
 -- fzf
-map('n', '<C-f>', ':Files<CR>', {noremap = true, silent =true})
-map('n', '<leader>b', ':Buffers<CR>', {noremap = true, silent =true})
-map('n', '<leader>g', ':Rg<CR>', {noremap = true, silent =true})
-map('n', '<leader>t', ':Tags<CR>', {noremap = true, silent =true})
-map('n', '<leader>m', ':Marks<CR>', {noremap = true, silent =true})
+map('n', '<C-f>', '<cmd>Files<CR>', {noremap = true, silent =true})
+map('n', '<leader>b', '<cmd>Buffers<CR>', {noremap = true, silent =true})
+map('n', '<leader>g', '<cmd>Rg<CR>', {noremap = true, silent =true})
+map('n', '<leader>t', '<cmd>Tags<CR>', {noremap = true, silent =true})
+map('n', '<leader>m', '<cmd>Marks<CR>', {noremap = true, silent =true})
 
 -- telescope
-map('n', '<C-p>', ':Telescope find_files<CR>', {noremap = true, silent =true})
-map('n', '<C-g>', ':Telescope live_grep<CR>', {noremap = true, silent =true})
-map('n', '<C-b>', ':Telescope buffers<CR>', {noremap = true, silent =true})
-map('n', '<C-t>', ':Telescope help_tags<CR>', {noremap = true, silent =true})
+map('n', '<C-p>', '<cmd>Telescope find_files<CR>', {noremap = true, silent =true})
+map('n', '<C-g>', '<cmd>Telescope live_grep<CR>', {noremap = true, silent =true})
+map('n', '<C-b>', '<cmd>Telescope buffers<CR>', {noremap = true, silent =true})
+map('n', '<C-t>', '<cmd>Telescope help_tags<CR>', {noremap = true, silent =true})
 
 -- commentary
-map('n', '<leader>/', ':Commentary<CR>', {noremap = true, silent = true})
-map('v', '<leader>/', ':Commentary<CR>', {noremap = true, silent = true})
+map('n', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
+map('v', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 
 -- markdown preview
-map('n', '<leader>mo', ':MarkdownPreview<CR>', {noremap = true, silent = true})
-map('n', '<leader>ms', ':MarkdownPreviewStop<CR>', {noremap = true, silent = true})
-map('n', '<leader>mt', ':MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
+map('n', '<leader>mo', '<cmd>MarkdownPreview<CR>', {noremap = true, silent = true})
+map('n', '<leader>ms', '<cmd>MarkdownPreviewStop<CR>', {noremap = true, silent = true})
+map('n', '<leader>mt', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
 
--- NOTE: 이하 keymapping은 init.vim에 있음
+-- NOTE<cmd> 이하 keymapping은 init.vim에 있음
 -- sniprun
 -- vimwiki
 -- iron (default key)
@@ -67,7 +67,7 @@ map('n', '<leader>mt', ':MarkdownPreviewToggle<CR>', {noremap = true, silent = t
 --cl                |<Plug>(iron-clear)|                    `n`
 -------------------------------------------------------------~
 
--- NOTE: lsp.lua에 설정되어 있음
+-- NOTE<cmd> lsp.lua에 설정되어 있음
 -- lsp_config
 -- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
