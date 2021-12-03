@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns'
     Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag install needed in terminal
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE for use telescope, needed
+    Plug 'nvim-lua/popup.nvim'
 
     " Plugin for todo
     Plug 'folke/todo-comments.nvim' " WARN: ripgrep, rg, ag install needed in terminal
@@ -22,18 +23,19 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for coding
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground' " NOTE: for USAGE: :TSInstall query - :TSPlaygroundToggle to view the tree-sitter information
     Plug 'jose-elias-alvarez/null-ls.nvim'
-    Plug 'scrooloose/syntastic' " grammar check for separate window
-    Plug 'tpope/vim-commentary' " space + /
+    "Plug 'scrooloose/syntastic' " grammar check for separate window
+    Plug 'tpope/vim-commentary' " NOTE: for USAGE: space + /
     Plug 'lukas-reineke/indent-blankline.nvim'
 
     " Plugin for LSP/complete suggestion
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'L3MON4D3/LuaSnip'
-    Plug 'saadparwaiz1/cmp_luasnip'
-    Plug 'onsails/lspkind-nvim'
+    Plug 'neovim/nvim-lspconfig' " NOTE: main lsp plugin
+    Plug 'hrsh7th/nvim-cmp' " NOTE: main auto-completion plugin
+    Plug 'hrsh7th/cmp-nvim-lsp' " NOTE: dependency of nvim-cmp
+    Plug 'L3MON4D3/LuaSnip' " NOTE: autocomplete you snippet
+    Plug 'saadparwaiz1/cmp_luasnip' " NOTE: snippet completion source
+    Plug 'onsails/lspkind-nvim' " NOTE: autocompletion icons
 
     " Plugin for git
     Plug 'tpope/vim-fugitive' " enable Git (e.g., Gdiff)
@@ -44,10 +46,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
-    "Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
-    "Plug 'mfussenegger/nvim-dap-python'
-    "Plug 'rcarriga/nvim-dap-ui'
-    "Plug 'Pocco81/DAPInstall.nvim'
+    Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
+    Plug 'mfussenegger/nvim-dap-python'
+    Plug 'nvim-telescope/telescope-dap.nvim'
 
     " Plugin for markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -55,27 +56,30 @@ call plug#begin('~/.vim/plugged')
     " Plugin for Passive setting
     Plug 'blueyed/vim-diminactive'
     Plug 'folke/which-key.nvim'
+    Plug 'karb94/neoscroll.nvim'
     
     " Plugin for color scheme, status bar
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
-    Plug 'arcticicestudio/nord-vim'
+    Plug 'arcticicestudio/nord-vim' " WARN: 0.6.0 problem due to Lsp-nvim
+    Plug 'folke/lsp-colors.nvim' " WARN: 0.6.0 problem due to Lsp-nvim
 
     " Plugin for notify
     Plug 'rcarriga/nvim-notify'
 
     "Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
-    " Plug 'tpope/vim-surround'
-    " Plug 'terryma/vim-multiple-cursors'
-    " Plug 'easymotion/vim-easymotion'
-    " Plug 'kana/vim-textobj-entire'
-    " Plug 'kana/vim-textobj-user'
-    " Plug 'jiangmiao/auto-pairs'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-surround'
+    Plug 'windwp/nvim-autopairs'
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+    Plug 'easymotion/vim-easymotion'
 
     " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-
+    
+    " NOTE: decide whether install orgmode or not
+    " NOTE: decide whether install project or not
 call plug#end()
 
 " =====Call user lua setting
@@ -91,8 +95,6 @@ let g:diminactive_enable_focus=1
 let g:loaded_perl_provider=0 " Perl provider disable
 
 " =====Setting for keymap
-" let maplocalleader = '\\'
-
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
 nmap <LocalLeader>ww <Plug>VimwikiIndex
@@ -105,7 +107,6 @@ nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
 nmap <LocalLeader>wh <Plug>Vimwiki2HTML
 nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
 nmap <LocalLeader>wt :VimwikiTable<CR>
-
 " nmap <Tab>d 0f]lli__date<Space><esc>
 
 " =====Modified Iron nvim keymap configuration
@@ -122,6 +123,20 @@ nmap <localleader>c <Plug>(iron-clear)
 nmap <leader>ff <Plug>SnipRun
 nmap <leader>f <Plug>SnipRunOperator
 vmap f <Plug>SnipRun
+
+" =====Debug adapter protocol
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <leader>dd :lua require('dap').continue()<CR>
+nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.repl.run_last()<CR>`
+nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
+vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
 
 " =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
 tnoremap <silent><ESC> <C-\><C-n>

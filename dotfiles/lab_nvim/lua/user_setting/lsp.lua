@@ -1,13 +1,18 @@
-local cmp = require('cmp')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local lspkind = require('lspkind')
-local luasnip = require('luasnip')
+-- local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local nvim_lsp = require('lspconfig')
-local null_ls = require('null-ls')
+--local null_ls = require('null-ls')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
 
 --lspconfig
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings
     local opts = { noremap=true, silent=true }
 
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -27,11 +32,8 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
-    -- Disable Autoformat
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-end
+  
+  end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -48,39 +50,43 @@ for _, lsp in ipairs(servers) do
 end
 
 -- null-ls
-null_ls.config({
-  sources = {
-      -- prettierd is installed globally via npm
-      null_ls.builtins.formatting.prettierd,
-      null_ls.builtins.code_actions.gitsigns
-  }
-})
+-- null_ls.config({
+--    sources = {
+--       -- prettierd is installed globally via npm
+--       null_ls.builtins.formatting.prettierd,
+--       null_ls.builtins.code_actions.gitsigns
+-- }
+-- })
 
 -- null-ls is a general purpose language server that doesn't need
 -- the same config as actual language servers like tsserver, so
 -- setup is a little different.
-nvim_lsp['null-ls'].setup({
-  on_attach = function(client, bufnr)
-      -- Autoformat
-      if client.resolved_capabilities.document_formatting then
-         vim.cmd [[augroup Format]]
-         vim.cmd [[autocmd! * <buffer>]]
-         vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
-         vim.cmd [[augroup END]]
-      end
-      -- call local on_attach
-      return on_attach(client, bufnr)
-  end
-})
+-- nvim_lsp['null-ls'].setup({
+--   on_attach = function(client, bufnr)
+--       -- Autoformat
+--       if client.resolved_capabilities.document_formatting then
+--          vim.cmd [[augroup Format]]
+--          vim.cmd [[autocmd! * <buffer>]]
+--          vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+--          vim.cmd [[augroup END]]
+--       end
+--      -- call local on_attach
+--       return on_attach(client, bufnr)
+--   end
+-- })
 
 -- nvim-cmp
+local cmp = require('cmp')
+local lspkind = require('lspkind')
+local luasnip = require('luasnip')
+
 -- better autocompletion experience
 vim.o.completeopt = 'menuone,noselect'
 
 cmp.setup {
 	-- Format the autocomplete menu
 	formatting = {
-		format = lspkind.cmp_format()
+		format = lspkind.cmp_format({with_text = false, maxwidth = 50})
 	},
 	mapping = {
 --    ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -126,10 +132,25 @@ cmp.setup {
 }
 
 -- Diagnostics
+-- Change prefix/character preceding the diagnostics' virtual text
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = {
+    prefix = '●', -- Could be '■', '●', '▎', 'x'
+  }
+})
+
 -- Set diganostic sign icons
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#change-diagnostic-symbols-in-the-sign-column-gutter
-local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
-    local hl = "LspDiagnosticsSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
+local lsp_color = require("lsp-colors")
+lsp_color.setup {
+  Error = "#bf616a",
+  Warning = "d08770",
+  Information = "#ebcb8b",
+  Hint = "b48ead"
+}

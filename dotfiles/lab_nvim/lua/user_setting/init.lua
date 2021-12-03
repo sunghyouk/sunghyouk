@@ -36,8 +36,11 @@ require('user_setting/keybinding')
 -- for which-key
 require('user_setting/whichkey')
 
+-- for autopair
+require('user_setting/autopair')
+
 -- for DAP
---require('user_setting/dap_install')
---require('user_setting/dap')
---require('user_setting/dap_py')
---require('user_setting/dap_ui')
+require('user_setting/dap_py')
+
+-- for neoscroll
+require('user_setting/neoscr')
