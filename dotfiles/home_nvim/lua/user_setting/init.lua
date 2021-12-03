@@ -1,4 +1,4 @@
---window appearance
+-- window appearance
 require('user_setting/lualine')
 require('user_setting/bufferline')
 require('user_setting/indent_blankline')
@@ -24,6 +24,8 @@ require('user_setting/lsp')
 require('user_setting/iron')
 require('user_setting/sniprun')
 
+require('user_setting/lsp_color')
+
 -- for nvim-notify
 require('user_setting/notify')
 
@@ -32,3 +34,15 @@ require('user_setting/toggleterm')
 
 -- for keybinding
 require('user_setting/keybinding')
+
+-- for which-key
+require('user_setting/whichkey')
+
+-- for autopair
+require('user_setting/autopair')
+
+-- for DAP
+--require('user_setting/dap_install')
+--require('user_setting/dap')
+--require('user_setting/dap_py')
+--require('user_setting/dap_ui')

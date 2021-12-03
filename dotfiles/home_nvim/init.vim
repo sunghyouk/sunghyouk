@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for coding
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'jose-elias-alvarez/null-ls.nvim'
     Plug 'scrooloose/syntastic' " grammar check for separate window
     Plug 'tpope/vim-commentary' " space + /
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -40,34 +41,44 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for python REPL
     Plug 'hkupty/iron.nvim'
-    " Plug 'metakirby5/codi.vim'
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
+
+    "Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
+    "Plug 'mfussenegger/nvim-dap-python'
+    "Plug 'rcarriga/nvim-dap-ui'
+    "Plug 'Pocco81/DAPInstall.nvim'
 
     " Plugin for markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     
     " Plugin for Passive setting
     Plug 'blueyed/vim-diminactive'
+    Plug 'folke/which-key.nvim'
+    Plug 'karb94/neoscroll.nvim'
     
     " Plugin for color scheme, status bar
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
     Plug 'arcticicestudio/nord-vim'
+    Plug 'folke/lsp-colors.nvim' " WARN: Color setting is needed
 
     " Plugin for notify
     Plug 'rcarriga/nvim-notify'
 
-    "Plugin from John-grib
+    "Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
+    Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
-    Plug 'terryma/vim-multiple-cursors'
+    Plug 'windwp/nvim-autopairs'
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'easymotion/vim-easymotion'
-    Plug 'kana/vim-textobj-entire'
-    Plug 'kana/vim-textobj-user'
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
+    " Plugin for vimwiki
+    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+    
+    " NOTE: decide whether install orgmode or not
+    " NOTE: decide whether install project or not
 call plug#end()
 
 " =====Call user lua setting
@@ -78,33 +89,11 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
-" =====vim-diminactive
 let g:diminactive_enable_focus=1
-
-" =====Codi Change the color
-" highlight CodiVirtualText guifg=cyan
-" let g:codi#virtual_text_prefix = "❯ "
 
 let g:loaded_perl_provider=0 " Perl provider disable
 
 " =====Setting for keymap
-let mapleader = ','
-let maplocalleader = '\\'
-
-nnoremap <leader>st :Startify<CR>
-nnoremap <leader>v :Vista<CR>
-
-nmap <Leader>1 :bp<CR>
-nmap <Leader>2 :bn<CR>
-nmap <C-w> :bd<CR>
-
-" =====fzf
-map <C-f> :Files<CR>
-map <leader>b :Buffers<CR>
-nnoremap <leader>g :Rg<CR>
-nnoremap <leader>t :Tags<CR>
-nnoremap <leader>m :Marks<CR>
-
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
 nmap <LocalLeader>ww <Plug>VimwikiIndex
@@ -117,23 +106,17 @@ nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
 nmap <LocalLeader>wh <Plug>Vimwiki2HTML
 nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
 nmap <LocalLeader>wt :VimwikiTable<CR>
+" nmap <Tab>d 0f]lli__date<Space><esc>
 
-nmap <Tab>d 0f]lli__date<Space><esc>
-
-" =====telescope
-nnoremap <C-p> :Telescope find_files<cr>
-nnoremap <C-g> :Telescope live_grep<cr>
-nnoremap <C-b> :Telescope buffers<cr>
-nnoremap <C-t> :Telescope help_tags<cr>
-
-" =====commentary (from nerdcommenter)
-nnoremap <Leader>/ :Commentary<CR>
-vnoremap <Leader>/ :Commentary<CR>
-
-" =====MarkdownPreview
-nmap <Leader>mo :MarkdownPreview<CR>
-nmap <Leader>ms :MarkdownPreviewStop<CR>
-nmap <Leader>mt :MarkdownPreviewToggle<CR>
+" =====Modified Iron nvim keymap configuration
+nmap <localleader>t <Plug>(iron-send-motion)
+vmap <localleader>v <Plug>(iron-visual-send)
+nmap <localleader>r <Plug>(iron-repeat-cmd)
+nmap <localleader>l <Plug>(iron-send-line)
+nmap <localleader><CR> <Plug>(iron-cr)
+nmap <localleader>i <plug>(iron-interrupt)
+nmap <localleader>q <Plug>(iron-exit)
+nmap <localleader>c <Plug>(iron-clear)
 
 " =====Sniprun
 nmap <leader>ff <Plug>SnipRun
