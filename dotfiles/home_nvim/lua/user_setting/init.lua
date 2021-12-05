@@ -24,8 +24,6 @@ require('user_setting/lsp')
 require('user_setting/iron')
 require('user_setting/sniprun')
 
-require('user_setting/lsp_color')
-
 -- for nvim-notify
 require('user_setting/notify')
 
@@ -42,7 +40,7 @@ require('user_setting/whichkey')
 require('user_setting/autopair')
 
 -- for DAP
---require('user_setting/dap_install')
---require('user_setting/dap')
---require('user_setting/dap_py')
---require('user_setting/dap_ui')
+require('user_setting/dap_py')
+
+-- for neoscroll
+require('user_setting/neoscr')

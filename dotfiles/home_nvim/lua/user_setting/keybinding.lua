@@ -49,7 +49,7 @@ map('n', '<leader>mo', '<cmd>MarkdownPreview<CR>', {noremap = true, silent = tru
 map('n', '<leader>ms', '<cmd>MarkdownPreviewStop<CR>', {noremap = true, silent = true})
 map('n', '<leader>mt', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
 
--- NOTE<cmd> 이하 keymapping은 init.vim에 있음
+-- NOTE: 이하 keymapping은 init.vim에 있음
 -- sniprun
 -- vimwiki
 -- iron (default key)
@@ -57,17 +57,17 @@ map('n', '<leader>mt', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent
 -------------------------------------------------------------~
 -- LHS(default)     RHS                                  MODE~
 -------------------------------------------------------------~
---  ctr             |<Plug>(iron-send-motion)|              `n`
---  ctr             |<Plug>(iron-visual-send)|              `v`
+-- ctr              |<Plug>(iron-send-motion)|              `n`
+-- ctr              |<Plug>(iron-visual-send)|              `v`
 -- cp               |<Plug>(iron-repeat-cmd)|               `n`
 -- <localleader>sl  |<Plug>(iron-send-line)|                `n`
 -- c<CR>            |<Plug>(iron-cr)|                       `n`
 -- cst              |<Plug>(iron-interrupt)|                `n`
 -- cq               |<Plug>(iron-exit)|                     `n`
---cl                |<Plug>(iron-clear)|                    `n`
+-- cl               |<Plug>(iron-clear)|                    `n`
 -------------------------------------------------------------~
 
--- NOTE<cmd> lsp.lua에 설정되어 있음
+-- NOTE: lsp.lua에 설정되어 있음
 -- lsp_config
 -- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -86,3 +86,5 @@ map('n', '<leader>mt', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent
 -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+-- NOTE: DAP는 init.vim에 설정되어 있음

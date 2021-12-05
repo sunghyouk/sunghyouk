@@ -12,9 +12,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
-    Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns'
+    Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns', 'null-ls'
     Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag install needed in terminal
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE for use telescope, needed
+    Plug 'nvim-lua/popup.nvim'
 
     " Plugin for todo
     Plug 'folke/todo-comments.nvim' " WARN: ripgrep, rg, ag install needed in terminal
@@ -22,18 +23,18 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for coding
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground' " NOTE: for USAGE: :TSInstall query - :TSPlaygroundToggle to view the tree-sitter information
     Plug 'jose-elias-alvarez/null-ls.nvim'
-    Plug 'scrooloose/syntastic' " grammar check for separate window
-    Plug 'tpope/vim-commentary' " space + /
+    Plug 'tpope/vim-commentary' " NOTE: for USAGE: space + /
     Plug 'lukas-reineke/indent-blankline.nvim'
 
     " Plugin for LSP/complete suggestion
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'L3MON4D3/LuaSnip'
-    Plug 'saadparwaiz1/cmp_luasnip'
-    Plug 'onsails/lspkind-nvim'
+    Plug 'neovim/nvim-lspconfig' " NOTE: main lsp plugin
+    Plug 'hrsh7th/nvim-cmp' " NOTE: main auto-completion plugin
+    Plug 'hrsh7th/cmp-nvim-lsp' " NOTE: dependency of nvim-cmp
+    Plug 'L3MON4D3/LuaSnip' " NOTE: autocomplete you snippet
+    Plug 'saadparwaiz1/cmp_luasnip' " NOTE: snippet completion source
+    Plug 'onsails/lspkind-nvim' " NOTE: autocompletion icons
 
     " Plugin for git
     Plug 'tpope/vim-fugitive' " enable Git (e.g., Gdiff)
@@ -44,10 +45,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
-    "Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
-    "Plug 'mfussenegger/nvim-dap-python'
-    "Plug 'rcarriga/nvim-dap-ui'
-    "Plug 'Pocco81/DAPInstall.nvim'
+    Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
+    Plug 'mfussenegger/nvim-dap-python'
+    Plug 'nvim-telescope/telescope-dap.nvim'
 
     " Plugin for markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -61,8 +61,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
-    Plug 'arcticicestudio/nord-vim'
-    Plug 'folke/lsp-colors.nvim' " WARN: Color setting is needed
+    Plug 'arcticicestudio/nord-vim' " WARN: 0.6.0 problem due to Lsp-nvim
+    Plug 'folke/lsp-colors.nvim' " WARN: 0.6.0 problem due to Lsp-nvim
 
     " Plugin for notify
     Plug 'rcarriga/nvim-notify'
@@ -113,7 +113,7 @@ nmap <localleader>t <Plug>(iron-send-motion)
 vmap <localleader>v <Plug>(iron-visual-send)
 nmap <localleader>r <Plug>(iron-repeat-cmd)
 nmap <localleader>l <Plug>(iron-send-line)
-nmap <localleader><CR> <Plug>(iron-cr)
+nmap <localleader>c<CR> <Plug>(iron-cr)
 nmap <localleader>i <plug>(iron-interrupt)
 nmap <localleader>q <Plug>(iron-exit)
 nmap <localleader>c <Plug>(iron-clear)
@@ -122,6 +122,20 @@ nmap <localleader>c <Plug>(iron-clear)
 nmap <leader>ff <Plug>SnipRun
 nmap <leader>f <Plug>SnipRunOperator
 vmap f <Plug>SnipRun
+
+" =====Debug adapter protocol
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <leader>dd :lua require('dap').continue()<CR>
+nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.repl.run_last()<CR>`
+nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
+vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
 
 " =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
 tnoremap <silent><ESC> <C-\><C-n>
@@ -147,7 +161,7 @@ set smartcase " ignore 옵션이 켜져있더라도 검색어에 대문자가 �
 
 " Indentation and Tab setting
 set autoindent " 새로운 라인이 추가될 때, 이전 라인의 들여쓰기에 자동으로 맞춤. (= ai)
-set textwidth=119 " lines longer than 119 columns will be broken
+set textwidth=120 " lines longer than 119 columns will be broken
 set expandtab  " Tab을 Space로 변경. (= et)
 set tabstop=4 " 탭으로 들여쓰기시 사용할 스페이스바 개수. (= ts)
 set shiftwidth=4 " <<, >> 으로 들여쓰기시 사용할 스페이스바 개수. (= sw)
