@@ -1,6 +1,6 @@
--- local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local nvim_lsp = require('lspconfig')
---local null_ls = require('null-ls')
+local null_ls = require('null-ls')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -50,30 +50,33 @@ for _, lsp in ipairs(servers) do
 end
 
 -- null-ls
--- null_ls.config({
---    sources = {
---       -- prettierd is installed globally via npm
---       null_ls.builtins.formatting.prettierd,
---       null_ls.builtins.code_actions.gitsigns
--- }
--- })
+null_ls.config({
+  sources = {
+     -- prettierd is installed globally via npm (for html, markdown, not for python)
+     -- needed to set another formatting tool like black or etc.,
+     null_ls.builtins.diagnostics.flake8,
+     null_ls.builtins.formatting.black,
+     null_ls.builtins.formatting.prettier,
+     null_ls.builtins.code_actions.gitsigns
+    }
+  })
 
 -- null-ls is a general purpose language server that doesn't need
 -- the same config as actual language servers like tsserver, so
 -- setup is a little different.
--- nvim_lsp['null-ls'].setup({
---   on_attach = function(client, bufnr)
---       -- Autoformat
---       if client.resolved_capabilities.document_formatting then
---          vim.cmd [[augroup Format]]
---          vim.cmd [[autocmd! * <buffer>]]
---          vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
---          vim.cmd [[augroup END]]
---       end
---      -- call local on_attach
---       return on_attach(client, bufnr)
---   end
--- })
+nvim_lsp['null-ls'].setup({
+  on_attach = function(client, bufnr)
+      -- Autoformat
+      if client.resolved_capabilities.document_formatting then
+         vim.cmd [[augroup Format]]
+         vim.cmd [[autocmd! * <buffer>]]
+         vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+         vim.cmd [[augroup END]]
+        end
+       -- call local on_attach
+       return on_attach(client, bufnr)
+    end
+  })
 
 -- nvim-cmp
 local cmp = require('cmp')
@@ -147,10 +150,10 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-local lsp_color = require("lsp-colors")
-lsp_color.setup {
-  Error = "#bf616a",
-  Warning = "d08770",
-  Information = "#ebcb8b",
-  Hint = "b48ead"
-}
+--local lsp_color = require("lsp-colors")
+--lsp_color.setup {
+--  Error = "#bf616a",
+--  Warning = "d08770",
+--  Information = "#ebcb8b",
+--  Hint = "b48ead"
+--}

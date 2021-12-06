@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
-    Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns'
+    Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns', 'null-ls'
     Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag install needed in terminal
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE for use telescope, needed
     Plug 'nvim-lua/popup.nvim'
@@ -25,7 +25,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/playground' " NOTE: for USAGE: :TSInstall query - :TSPlaygroundToggle to view the tree-sitter information
     Plug 'jose-elias-alvarez/null-ls.nvim'
-    "Plug 'scrooloose/syntastic' " grammar check for separate window
     Plug 'tpope/vim-commentary' " NOTE: for USAGE: space + /
     Plug 'lukas-reineke/indent-blankline.nvim'
 
@@ -62,8 +61,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
-    Plug 'arcticicestudio/nord-vim' " WARN: 0.6.0 problem due to Lsp-nvim
-    Plug 'folke/lsp-colors.nvim' " WARN: 0.6.0 problem due to Lsp-nvim
+    Plug 'shaunsingh/nord.nvim' 
+    Plug 'folke/lsp-colors.nvim'
 
     " Plugin for notify
     Plug 'rcarriga/nvim-notify'
@@ -78,8 +77,10 @@ call plug#begin('~/.vim/plugged')
     " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
     
+    " NOTE: decide whether install vimtex or not
     " NOTE: decide whether install orgmode or not
-    " NOTE: decide whether install project or not
+    " NOTE: decide whether install telescope-project or not
+    " NOTE: decide whether install pandoc or not
 call plug#end()
 
 " =====Call user lua setting
@@ -114,7 +115,7 @@ nmap <localleader>t <Plug>(iron-send-motion)
 vmap <localleader>v <Plug>(iron-visual-send)
 nmap <localleader>r <Plug>(iron-repeat-cmd)
 nmap <localleader>l <Plug>(iron-send-line)
-nmap <localleader><CR> <Plug>(iron-cr)
+nmap <localleader>c<CR> <Plug>(iron-cr)
 nmap <localleader>i <plug>(iron-interrupt)
 nmap <localleader>q <Plug>(iron-exit)
 nmap <localleader>c <Plug>(iron-clear)
@@ -142,13 +143,15 @@ vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<C
 tnoremap <silent><ESC> <C-\><C-n>
 
 " =====Custom setting
+set termguicolors " this variable must be enabled for colors to be applied properly for nvim-tree, bufferline (NOTE)
 set hidden
-syntax on " 형식별 구문 강조 표시
+filetype plugin indent on
+"syntax on " 형식별 구문 강조 표시
 set number " 라인 넘버 표시. (= nu)
 set signcolumn=number
 set showcmd " 사용자가 입력한 명령어 표시
 set showmatch " 현재 선택된 괄호의 쌍을 표시
-set relativenumber " 커서를 기준으로 라인 넘버 표시. 커서 위치에 따라 바뀜. (= rnu)
+"set relativenumber " 커서를 기준으로 라인 넘버 표시. 커서 위치에 따라 바뀜. (= rnu)
 set cursorline " 커서가 있는 라인을 강조 표시. (= cul)
 set ruler " 커서 위치 표시. (= ru)
 set laststatus=2 " 상태바 표시. (= ls) [0: 상태바 미표시 / 1: 2개 이상의 윈도우에서 표시 / 2: 항상 표시]
@@ -162,14 +165,13 @@ set smartcase " ignore 옵션이 켜져있더라도 검색어에 대문자가 �
 
 " Indentation and Tab setting
 set autoindent " 새로운 라인이 추가될 때, 이전 라인의 들여쓰기에 자동으로 맞춤. (= ai)
-set textwidth=119 " lines longer than 119 columns will be broken
+set textwidth=120 " lines longer than 119 columns will be broken
 set expandtab  " Tab을 Space로 변경. (= et)
 set tabstop=4 " 탭으로 들여쓰기시 사용할 스페이스바 개수. (= ts)
 set shiftwidth=4 " <<, >> 으로 들여쓰기시 사용할 스페이스바 개수. (= sw)
 set shiftround
 set softtabstop=4 " 스페이스바 n개를 하나의 탭으로 처리. (= sts)
 " ex) 스페이스바 4개가 연속으로 있다면 백스페이스로 스페이스바를 지우면 스페이스바 4개를 하나의 탭으로 인식해 삭제.
-filetype indent on " indent.vim 파일에 설정된 파일 형식별 들여쓰기 적용.
 
 " Input setting
 set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
