@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'L3MON4D3/LuaSnip' " NOTE: autocomplete you snippet
     Plug 'saadparwaiz1/cmp_luasnip' " NOTE: snippet completion source
     Plug 'onsails/lspkind-nvim' " NOTE: autocompletion icons
+    Plug 'williamboman/nvim-lsp-installer' " NOTE: lsp-installer
 
     " Plugin for git
     Plug 'tpope/vim-fugitive' " enable Git (e.g., Gdiff)
@@ -77,10 +78,8 @@ call plug#begin('~/.vim/plugged')
     " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
     
-    " NOTE: decide whether install vimtex or not
     " NOTE: decide whether install orgmode or not
     " NOTE: decide whether install telescope-project or not
-    " NOTE: decide whether install pandoc or not
 call plug#end()
 
 " =====Call user lua setting
@@ -94,7 +93,6 @@ endfor
 let g:diminactive_enable_focus=1
 
 let g:loaded_perl_provider=0 " Perl provider disable
-
 " =====Setting for keymap
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
@@ -146,12 +144,12 @@ tnoremap <silent><ESC> <C-\><C-n>
 set termguicolors " this variable must be enabled for colors to be applied properly for nvim-tree, bufferline (NOTE)
 set hidden
 filetype plugin indent on
-"syntax on " 형식별 구문 강조 표시
+syntax on " 형식별 구문 강조 표시
 set number " 라인 넘버 표시. (= nu)
 set signcolumn=number
 set showcmd " 사용자가 입력한 명령어 표시
 set showmatch " 현재 선택된 괄호의 쌍을 표시
-"set relativenumber " 커서를 기준으로 라인 넘버 표시. 커서 위치에 따라 바뀜. (= rnu)
+set relativenumber " 커서를 기준으로 라인 넘버 표시. 커서 위치에 따라 바뀜. (= rnu)
 set cursorline " 커서가 있는 라인을 강조 표시. (= cul)
 set ruler " 커서 위치 표시. (= ru)
 set laststatus=2 " 상태바 표시. (= ls) [0: 상태바 미표시 / 1: 2개 이상의 윈도우에서 표시 / 2: 항상 표시]
