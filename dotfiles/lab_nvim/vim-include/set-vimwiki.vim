@@ -8,7 +8,7 @@ let g:vimwiki_list = [
   \]
 
 " vimwiki의 conceallevel 을 끄는 쪽이 좋다
-let g:vimwiki_conceallevel = 0
+let g:vimwiki_conceallevel = 1
 let g:vimwiki_table_mappings = 0
 
 let g:vimwiki_global_ext = 0
@@ -68,8 +68,8 @@ function! NewTemplate()
     call add(l:template, 'parent  : ')
     call add(l:template, 'latex   : false')
     call add(l:template, '---')
-    call add(l:template, '* TOC')
-    call add(l:template, '{:toc}')
+    " call add(l:template, '* TOC')
+    " call add(l:template, '{:toc}')
     call add(l:template, '')
     call add(l:template, '# ')
     call setline(1, l:template)
