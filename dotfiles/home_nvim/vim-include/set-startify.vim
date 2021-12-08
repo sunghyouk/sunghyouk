@@ -19,5 +19,5 @@ let g:startify_bookmarks = [
 		\ { 'l': '~/.config/nvim/lua/user_setting/init.lua' },
 		\ { 'z': '~/.zshrc' },
 		\ { 'w': '~/OneDrive/vimwiki/index.md' },
-		\ { 'x': '' },
+		\ { 'x': '~/OneDrive/vimorg/refile.org' },
 		\]

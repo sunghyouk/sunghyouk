@@ -13,5 +13,5 @@ iron.core.set_config {
         python = 'ipython',
         r = 'R'
     },
-    repl_open_cmd = "rightbelow 20 split"
+    repl_open_cmd = "rightbelow 40 split"
 }

@@ -13,8 +13,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
 
     Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns', 'null-ls'
-    Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag install needed in terminal
-    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE for use telescope, needed
+    Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag, fd install needed in terminal
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE: for use telescope, needed
     Plug 'nvim-lua/popup.nvim'
 
     " Plugin for todo
@@ -28,19 +28,20 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary' " NOTE: for USAGE: space + /
     Plug 'lukas-reineke/indent-blankline.nvim'
 
-    " Plugin for LSP/complete suggestion
+    " Plugin for Language support protocol/complete suggestion/code snippet
     Plug 'neovim/nvim-lspconfig' " NOTE: main lsp plugin
     Plug 'hrsh7th/nvim-cmp' " NOTE: main auto-completion plugin
     Plug 'hrsh7th/cmp-nvim-lsp' " NOTE: dependency of nvim-cmp
     Plug 'L3MON4D3/LuaSnip' " NOTE: autocomplete you snippet
     Plug 'saadparwaiz1/cmp_luasnip' " NOTE: snippet completion source
     Plug 'onsails/lspkind-nvim' " NOTE: autocompletion icons
+    Plug 'williamboman/nvim-lsp-installer' " NOTE: lsp-installer
 
     " Plugin for git
     Plug 'tpope/vim-fugitive' " enable Git (e.g., Gdiff)
     Plug 'lewis6991/gitsigns.nvim'
 
-    " Plugin for python REPL
+    " Plugin for python REPL, debug adapter protocol
     Plug 'hkupty/iron.nvim'
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
@@ -53,21 +54,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     
     " Plugin for Passive setting
-    Plug 'blueyed/vim-diminactive'
+    Plug 'blueyed/vim-diminactive' " NOTE: inactive buffer will gray
     Plug 'folke/which-key.nvim'
-    Plug 'karb94/neoscroll.nvim'
+    Plug 'karb94/neoscroll.nvim' " NOTE: smooth scroll when using <C-u>, <C-d>
     
     " Plugin for color scheme, status bar
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
-    Plug 'arcticicestudio/nord-vim' " WARN: 0.6.0 problem due to Lsp-nvim
-    Plug 'folke/lsp-colors.nvim' " WARN: 0.6.0 problem due to Lsp-nvim
+    Plug 'shaunsingh/nord.nvim' 
+    Plug 'folke/lsp-colors.nvim'
 
     " Plugin for notify
     Plug 'rcarriga/nvim-notify'
 
-    "Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
+    " Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
     Plug 'windwp/nvim-autopairs'
@@ -76,9 +77,20 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+
+    " Plugin for vimtex
+    Plug 'lervag/vimtex'
     
-    " NOTE: decide whether install orgmode or not
-    " NOTE: decide whether install project or not
+    " Plugin for pandoc
+    Plug 'vim-pandoc/vim-pandoc'
+    Plug 'vim-pandoc/vim-pandoc-syntax' " NOTE: more syntax highlight and better conceal feature
+
+    " Plugin for nvim-orgmode and accessories
+    Plug 'nvim-orgmode/orgmode' " NOTE: main plugin, it is needed tree-sitter plugin
+    Plug 'lukas-reineke/headlines.nvim'
+    Plug 'akinsho/org-bullets.nvim'
+
+    " NOTE: decide whether install telescope-project or not
 call plug#end()
 
 " =====Call user lua setting
@@ -89,10 +101,17 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
+" =====vimtex
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+
+" =====vim-pandoc
+let g:pandoc#spell#enabled=0
+
+" =====
 let g:diminactive_enable_focus=1
 
 let g:loaded_perl_provider=0 " Perl provider disable
-
 " =====Setting for keymap
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
@@ -141,8 +160,11 @@ vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<C
 tnoremap <silent><ESC> <C-\><C-n>
 
 " =====Custom setting
+set nocompatible
+set termguicolors " this variable must be enabled for colors to be applied properly for nvim-tree, bufferline (NOTE)
 set hidden
-syntax on " 형식별 구문 강조 표시
+filetype plugin indent on
+syntax enable " 형식별 구문 강조 표시
 set number " 라인 넘버 표시. (= nu)
 set signcolumn=number
 set showcmd " 사용자가 입력한 명령어 표시
@@ -168,7 +190,6 @@ set shiftwidth=4 " <<, >> 으로 들여쓰기시 사용할 스페이스바 개�
 set shiftround
 set softtabstop=4 " 스페이스바 n개를 하나의 탭으로 처리. (= sts)
 " ex) 스페이스바 4개가 연속으로 있다면 백스페이스로 스페이스바를 지우면 스페이스바 4개를 하나의 탭으로 인식해 삭제.
-filetype indent on " indent.vim 파일에 설정된 파일 형식별 들여쓰기 적용.
 
 " Input setting
 set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
