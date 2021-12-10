@@ -57,6 +57,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'blueyed/vim-diminactive' " NOTE: inactive buffer will gray
     Plug 'folke/which-key.nvim'
     Plug 'karb94/neoscroll.nvim' " NOTE: smooth scroll when using <C-u>, <C-d>
+    Plug 'simrat39/symbols-outline.nvim' "NOTE: tree-like view for symbols using LSP
     
     " Plugin for color scheme, status bar
     Plug 'kyazdani42/nvim-web-devicons'
@@ -84,7 +85,12 @@ call plug#begin('~/.vim/plugged')
     " Plugin for pandoc
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax' " NOTE: more syntax highlight and better conceal feature
-    " NOTE: decide whether install orgmode or not
+
+    " Plugin for nvim-orgmode and accessories
+    Plug 'nvim-orgmode/orgmode' " NOTE: main plugin, it is needed tree-sitter plugin
+    Plug 'lukas-reineke/headlines.nvim'
+    Plug 'akinsho/org-bullets.nvim'
+
     " NOTE: decide whether install telescope-project or not
 call plug#end()
 

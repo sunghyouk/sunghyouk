@@ -25,6 +25,7 @@ require('user_setting/lsp')
 require('user_setting/iron')
 require('user_setting/sniprun')
 require('user_setting/lsp_install')
+require('user_setting/symbols')
 
 -- for nvim-notify
 require('user_setting/notify')
@@ -46,3 +47,10 @@ require('user_setting/dap_py')
 
 -- for neoscroll
 require('user_setting/neoscr')
+
+-- for code block highlighting in markdown (rmd) documents with orgmode, vimwiki
+require('user_setting/headlines')
+
+-- for orgmode
+require('user_setting/orgmode')
+require('user_setting/org_bullet')

@@ -15,9 +15,10 @@ let g:startify_lists = [
           \ ]
 
 let g:startify_bookmarks = [
-		\ { 'v': '~/.config/nvim/init.vim' },
 		\ { 'l': '~/.config/nvim/lua/user_setting/init.lua' },
-		\ { 'z': '~/.zshrc' },
+		\ { 'v': '~/.config/nvim/init.vim' },
 		\ { 'w': '~/OneDrive/vimwiki/index.md' },
-		\ { 'x': '' },
+		\ { 'x': '~/OneDrive/vimwiki_article/index.md' },
+		\ { 'y': '~/OneDrive/vimwiki_study/index.md' },
+		\ { 'z': '~/.zshrc' },
 		\]
