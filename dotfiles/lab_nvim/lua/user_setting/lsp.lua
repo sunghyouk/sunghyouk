@@ -128,7 +128,7 @@ cmp.setup {
     end
   },
   sources = {
-    { name = 'nvim_diagnostics' },
+    { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'orgmode' }
   },
