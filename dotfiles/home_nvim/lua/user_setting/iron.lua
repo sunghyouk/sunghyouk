@@ -1,17 +1,17 @@
 local iron = require('iron')
 
---iron.core.add_repl_definitions {
---    r = {
---        radian = {
---            command = {'radian', '--r-binary=/usr/local/bin/R'}
---        }
---    }
---}
+iron.core.add_repl_definitions {
+    r = {
+        radian = {
+            command = {'radian'}
+        }
+    }
+}
 
 iron.core.set_config {
     preferred = {
         python = 'ipython',
-        r = 'R'
+        r = 'radian'
     },
-    repl_open_cmd = "rightbelow 40 split"
+    repl_open_cmd = "botright vertical split"
 }

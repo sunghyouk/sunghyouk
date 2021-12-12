@@ -4,11 +4,21 @@ let g:vimwiki_list = [
     \   'path': '~/OneDrive/vimwiki',
     \   'ext' : '.md',
     \   'diary_rel_path': '.',
+    \},
+    \{
+    \   'path': '~/OneDrive/vimwiki_study',
+    \   'ext': '.md',
+    \   'diary_rel_path': '.',
+    \},
+    \{
+    \   'path': '~/OneDrive/vimwiki_article',
+    \   'ext': '.md',
+    \   'diary_rel_path': '.',
     \}
   \]
 
 " vimwiki의 conceallevel 을 끄는 쪽이 좋다
-let g:vimwiki_conceallevel = 1
+let g:vimwiki_conceallevel = 0
 let g:vimwiki_table_mappings = 0
 
 let g:vimwiki_global_ext = 0

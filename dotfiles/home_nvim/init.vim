@@ -57,6 +57,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'blueyed/vim-diminactive' " NOTE: inactive buffer will gray
     Plug 'folke/which-key.nvim'
     Plug 'karb94/neoscroll.nvim' " NOTE: smooth scroll when using <C-u>, <C-d>
+    Plug 'simrat39/symbols-outline.nvim' "NOTE: tree-like view for symbols using LSP
     
     " Plugin for color scheme, status bar
     Plug 'kyazdani42/nvim-web-devicons'

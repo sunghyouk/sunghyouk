@@ -1,7 +1,20 @@
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local nvim_lsp = require('lspconfig')
-local null_ls = require('null-ls')
 
+nvim_lsp.r_language_server.setup{}
+--nvim_lsp.r_language_server.setup{
+--  cmd = {
+--    'R',
+--    '--slave',
+--    '-e',
+--    [[
+--      .libpaths(new = "/Library/Frameworks/R.framework/Versions/4.1/Resources/library");
+--      langserver <- languageserver:::LanguageServer$new("localhost", NULL);
+--      .libPaths(new = Sys.getenv("R_LIBS_USER"));
+--      langserver$run())
+--    ]]
+--  }
+--}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 
@@ -49,6 +62,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- null-ls
+local null_ls = require('null-ls')
 null_ls.config({
   sources = {
      -- prettierd is installed globally via npm (for html, markdown, not for python)
@@ -56,7 +70,9 @@ null_ls.config({
      null_ls.builtins.diagnostics.flake8,
      null_ls.builtins.formatting.black,
      null_ls.builtins.formatting.prettier,
-     null_ls.builtins.code_actions.gitsigns
+     null_ls.builtins.code_actions.gitsigns,
+     null_ls.builtins.diagnostics.vint,
+     null_ls.builtins.formatting.format_r
     }
   })
 
@@ -69,7 +85,7 @@ nvim_lsp['null-ls'].setup({
       if client.resolved_capabilities.document_formatting then
          vim.cmd [[augroup Format]]
          vim.cmd [[autocmd! * <buffer>]]
-         vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+         vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
          vim.cmd [[augroup END]]
         end
        -- call local on_attach
@@ -90,48 +106,48 @@ cmp.setup {
 	formatting = {
 		format = lspkind.cmp_format({with_text = false, maxwidth = 50})
 	},
-	mapping = {
---    ['<C-p>'] = cmp.mapping.select_prev_item(),
---    ['<C-n>'] = cmp.mapping.select_next_item(),
---    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
---    ['<C-f>'] = cmp.mapping.scroll_docs(4),
---    ['<C-Space>'] = cmp.mapping.complete(),
---    ['<C-e>'] = cmp.mapping.close(),
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
 
-        -- Use Tab and shift-Tab to navigate autocomplete menu
-        ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end,
-        ['<S-Tab>'] = function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-        end,
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        },
+    -- Use Tab and shift-Tab to navigate autocomplete menu
+    ['<Tab>'] = function(fallback)
+      if cmp.visible() then
+      cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end,
+    ['<S-Tab>'] = function(fallback)
+      if cmp.visible() then
+      cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end,
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
     },
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end
-    },
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'orgmode' }
-    },
+  },
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'orgmode' }
+  },
 }
 
 -- Diagnostics
@@ -149,11 +165,3 @@ for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
---local lsp_color = require("lsp-colors")
---lsp_color.setup {
---  Error = "#bf616a",
---  Warning = "d08770",
---  Information = "#ebcb8b",
---  Hint = "b48ead"
---}

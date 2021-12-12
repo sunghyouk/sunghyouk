@@ -25,6 +25,7 @@ require('user_setting/lsp')
 require('user_setting/iron')
 require('user_setting/sniprun')
 require('user_setting/lsp_install')
+require('user_setting/symbols')
 
 -- for nvim-notify
 require('user_setting/notify')
