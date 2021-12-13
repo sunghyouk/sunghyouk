@@ -42,7 +42,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'lewis6991/gitsigns.nvim'
 
     " Plugin for python REPL, debug adapter protocol
-    Plug 'hkupty/iron.nvim'
+    Plug 'kassio/neoterm'
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
@@ -63,7 +63,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
-    Plug 'shaunsingh/nord.nvim' 
+    Plug 'shaunsingh/nord.nvim'
+    Plug 'EdenEast/nightfox.nvim'
     Plug 'folke/lsp-colors.nvim'
 
     " Plugin for notify
@@ -102,12 +103,24 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
+colorscheme dayfox " nightfox, nordfox, dawnfox, duskfox
+
 " =====vimtex
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 
 " =====vim-pandoc
 let g:pandoc#spell#enabled=0
+
+" =====neoterm
+let g:neoterm_callbacks = {}
+    function! g:neoterm_callbacks.before_new()
+      if winwidth('.') > 100
+        let g:neoterm_default_mod = 'botright vertical'
+      else
+        let g:neoterm_default_mod = 'botright'
+      end
+    endfunction
 
 " =====
 let g:diminactive_enable_focus=1
@@ -128,16 +141,6 @@ nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
 nmap <LocalLeader>wt :VimwikiTable<CR>
 " nmap <Tab>d 0f]lli__date<Space><esc>
 
-" =====Modified Iron nvim keymap configuration
-nmap <localleader>t <Plug>(iron-send-motion)
-vmap <localleader>v <Plug>(iron-visual-send)
-nmap <localleader>r <Plug>(iron-repeat-cmd)
-nmap <localleader>l <Plug>(iron-send-line)
-nmap <localleader>c<CR> <Plug>(iron-cr)
-nmap <localleader>i <plug>(iron-interrupt)
-nmap <localleader>q <Plug>(iron-exit)
-nmap <localleader>c <Plug>(iron-clear)
-
 " =====Sniprun
 nmap <leader>ff <Plug>SnipRun
 nmap <leader>f <Plug>SnipRunOperator
@@ -157,15 +160,20 @@ nnoremap <silent> <leader>dl :lua require'dap'.repl.run_last()<CR>`
 nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
 vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
 
+" =====Neoterm
+nnoremap <silent> <localleader>cc :TREPLSendLine<CR>
+vnoremap <silent> <localleader>cc :TREPLSendSelection<CR>
+
 " =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
 tnoremap <silent><ESC> <C-\><C-n>
 
 " =====Custom setting
+filetype plugin indent on
+syntax on " 형식별 구문 강조 표시
+
 set nocompatible
 set termguicolors " this variable must be enabled for colors to be applied properly for nvim-tree, bufferline (NOTE)
 set hidden
-filetype plugin indent on
-syntax enable " 형식별 구문 강조 표시
 set number " 라인 넘버 표시. (= nu)
 set signcolumn=number
 set showcmd " 사용자가 입력한 명령어 표시
