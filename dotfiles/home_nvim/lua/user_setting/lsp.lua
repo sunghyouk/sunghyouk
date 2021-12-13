@@ -1,33 +1,21 @@
+-- NOTE: roll back to previous setting (13th, Dec, 2021)
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local nvim_lsp = require('lspconfig')
 
-nvim_lsp.r_language_server.setup{}
---nvim_lsp.r_language_server.setup{
---  cmd = {
---    'R',
---    '--slave',
---    '-e',
---    [[
---      .libpaths(new = "/Library/Frameworks/R.framework/Versions/4.1/Resources/library");
---      langserver <- languageserver:::LanguageServer$new("localhost", NULL);
---      .libPaths(new = Sys.getenv("R_LIBS_USER"));
---      langserver$run())
---    ]]
---  }
---}
+-- 1) lspconfig
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 
---lspconfig
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    --local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings
     local opts = { noremap=true, silent=true }
 
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -45,12 +33,19 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+    -- Disable Autoformat
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
   end
 
+-- nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
-local servers = {'pyright', 'r_language_server', 'texlab', 'vimls'}
+-- Use a loop t conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = {'tsserver', 'r_language_server', 'sumneko_lua', 'texlab', 'vimls', 'pyright'}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,
@@ -61,39 +56,23 @@ for _, lsp in ipairs(servers) do
     }
 end
 
--- null-ls
+-- 2) null-ls - to independent setup
 local null_ls = require('null-ls')
-null_ls.config({
-  sources = {
-     -- prettierd is installed globally via npm (for html, markdown, not for python)
-     -- needed to set another formatting tool like black or etc.,
-     null_ls.builtins.diagnostics.flake8,
-     null_ls.builtins.formatting.black,
-     null_ls.builtins.formatting.prettier,
-     null_ls.builtins.code_actions.gitsigns,
-     null_ls.builtins.diagnostics.vint,
-     null_ls.builtins.formatting.format_r
-    }
-  })
 
 -- null-ls is a general purpose language server that doesn't need
 -- the same config as actual language servers like tsserver, so
 -- setup is a little different.
-nvim_lsp['null-ls'].setup({
-  on_attach = function(client, bufnr)
-      -- Autoformat
-      if client.resolved_capabilities.document_formatting then
-         vim.cmd [[augroup Format]]
-         vim.cmd [[autocmd! * <buffer>]]
-         vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-         vim.cmd [[augroup END]]
-        end
-       -- call local on_attach
-       return on_attach(client, bufnr)
-    end
-  })
+null_ls.setup({
+    sources = {
+        null_ls.builtins.diagnostics.flake8,
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.formatting.format_r
+    }
+})
 
--- nvim-cmp
+-- 3) nvim-cmp
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 local luasnip = require('luasnip')
@@ -150,7 +129,7 @@ cmp.setup {
   },
 }
 
--- Diagnostics
+-- 4) Diagnostics
 -- Change prefix/character preceding the diagnostics' virtual text
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = {

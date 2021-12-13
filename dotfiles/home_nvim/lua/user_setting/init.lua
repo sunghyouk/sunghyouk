@@ -2,15 +2,16 @@
 require('user_setting/lualine')
 require('user_setting/bufferline')
 require('user_setting/indent_blankline')
-require('user_setting/nord')
+--require('user_setting/nord')
+require('user_setting/nightfox')
 
--- tree
-require('user_setting/NvimTree')
+-- nvim-tree
+require('user_setting/nvimtree')
 
--- searching
+-- telescope searching
 require('user_setting/telescope')
 
--- todo
+-- todo comments
 require('user_setting/todo_comments')
 require('user_setting/trouble')
 
@@ -22,10 +23,12 @@ require('user_setting/treesitter')
 
 -- for coding: LSP, autocomplete
 require('user_setting/lsp')
-require('user_setting/iron')
 require('user_setting/sniprun')
 require('user_setting/lsp_install')
 require('user_setting/symbols')
+
+-- for DAP
+require('user_setting/dap_py')
 
 -- for nvim-notify
 require('user_setting/notify')
@@ -41,9 +44,6 @@ require('user_setting/whichkey')
 
 -- for autopair
 require('user_setting/autopair')
-
--- for DAP
-require('user_setting/dap_py')
 
 -- for neoscroll
 require('user_setting/neoscr')
