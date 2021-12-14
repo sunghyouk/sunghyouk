@@ -1,8 +1,8 @@
-local NvimTree = require('nvim-tree')
+local nvimtree = require('nvim-tree')
 
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
-NvimTree.setup {
+nvimtree.setup {
     disable_netrw       = true,
     hijack_netrw        = true,
     open_on_setup       = false,
