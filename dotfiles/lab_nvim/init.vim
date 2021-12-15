@@ -52,7 +52,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'rcarriga/nvim-dap-ui'
 
     " Plugin for markdown
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+    Plug 'davidgranstrom/nvim-markdown-preview'
     
     " Plugin for Passive setting
     Plug 'blueyed/vim-diminactive' " NOTE: inactive buffer will gray

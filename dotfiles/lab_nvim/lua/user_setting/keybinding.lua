@@ -45,9 +45,7 @@ map('n', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 map('v', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 
 -- markdown preview
-map('n', '<leader>mo', '<cmd>MarkdownPreview<CR>', {noremap = true, silent = true})
-map('n', '<leader>ms', '<cmd>MarkdownPreviewStop<CR>', {noremap = true, silent = true})
-map('n', '<leader>mt', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
+map('n', '<leader>m', '<cmd>MarkdownPreview<CR>', {noremap = true, silent = true})
 
 -- NOTE: 이하 keymapping은 init.vim에 있음
 -- sniprun
