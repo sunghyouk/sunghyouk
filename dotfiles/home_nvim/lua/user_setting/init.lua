@@ -2,7 +2,7 @@
 require('user_setting/lualine')
 require('user_setting/bufferline')
 require('user_setting/indent_blankline')
---require('user_setting/nord')
+require('user_setting/nord')
 require('user_setting/nightfox')
 
 -- nvim-tree
@@ -28,7 +28,8 @@ require('user_setting/lsp_install')
 require('user_setting/symbols')
 
 -- for DAP
-require('user_setting/dap_py')
+require('user_setting/dap')
+require('user_setting/dap_ui')
 
 -- for nvim-notify
 require('user_setting/notify')

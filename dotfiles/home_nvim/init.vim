@@ -25,7 +25,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/playground' " NOTE: for USAGE: :TSInstall query - :TSPlaygroundToggle to view the tree-sitter information
     Plug 'jose-elias-alvarez/null-ls.nvim'
-    Plug 'tpope/vim-commentary' " NOTE: for USAGE: space + /
+    Plug 'tpope/vim-commentary' " NOTE: for USAGE: gc{motion}
     Plug 'lukas-reineke/indent-blankline.nvim'
 
     " Plugin for Language support protocol/complete suggestion/code snippet
@@ -49,9 +49,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
     Plug 'mfussenegger/nvim-dap-python'
     Plug 'nvim-telescope/telescope-dap.nvim'
+    Plug 'rcarriga/nvim-dap-ui'
 
     " Plugin for markdown
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+    Plug 'davidgranstrom/nvim-markdown-preview'
     
     " Plugin for Passive setting
     Plug 'blueyed/vim-diminactive' " NOTE: inactive buffer will gray
@@ -76,6 +77,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'windwp/nvim-autopairs'
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'easymotion/vim-easymotion'
+    Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-entire' " NOTE: ae - targets the entire content, ie - does not include leading and trailing empty lines
 
     " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
@@ -103,7 +106,7 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
-colorscheme nordfox " nightfox, nordfox, dayfox, dawnfox, duskfox
+colorscheme nordfox " nightfox, nordfox, dawnfox, duskfox, dayfox
 
 " =====vimtex
 let g:vimtex_view_method='zathura'
@@ -125,7 +128,7 @@ let g:neoterm_callbacks = {}
 " =====
 let g:diminactive_enable_focus=1
 
-let g:loaded_perl_provider=0 " Perl provider disable
+"let g:loaded_perl_provider=0 " Perl provider disable
 " =====Setting for keymap
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
@@ -147,18 +150,31 @@ nmap <leader>f <Plug>SnipRunOperator
 vmap f <Plug>SnipRun
 
 " =====Debug adapter protocol
-nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
-nnoremap <silent> <leader>dd :lua require('dap').continue()<CR>
-nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
-nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
-nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>dd :lua require'dap'.continue()<CR>
+nnoremap <silent> <S-j> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <S-l> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <S-k> :lua require'dap'.step_out()<CR>
 nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
 nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
-nnoremap <silent> <leader>dl :lua require'dap'.repl.run_last()<CR>`
-nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
+nnoremap <silent> <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.repl.run_last()<CR>
+
+nnoremap <silent> <leader>dm :lua require('dap-python').test_method()<CR>
+nnoremap <silent> <leader>dc :lua require('dap-python').test_class()<CR>
 vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
+
+" ===== DAP custom keymap
+nnoremap <silent> <leader>dk :lua require'dap'.up()<CR>
+nnoremap <silent> <leader>dj :lua require'dap'.down()<CR>
+
+nnoremap <silent> <leader>di :lua require'dap.ui.widgets'.hover()<CR>
+nnoremap <silent> <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
+
+nnoremap <silent> <leader>df :Telescope dap frames<CR>
+nnoremap <silent> <leader>db :Telescope dap list_breakpoints<CR>
+
+nnoremap <silent> <leader>dq :lua require('dapui').toggle()<CR>
 
 " =====Neoterm
 nnoremap <silent> <localleader>cc :TREPLSendLine<CR>
