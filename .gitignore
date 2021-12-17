@@ -13,6 +13,7 @@ wiki/.git
 .SpaceVim.log
 docs/_site/*
 docs/Gemfile.lock
+
 # Ignore tags created by etags, ctags, gtags (GNU global) and cscope
 TAGS
 .TAGS
