@@ -1,7 +1,7 @@
 local dap = require('dap')
 dap.adapters.python = {
     type = 'executable';
-    command = os.getenv('HOME') .. '/Users/sh_home/opt/anaconda3/bin/python3';
+    command = os.getenv('HOME') .. '/Users/sunghyouk/opt/anaconda3';
     args = { '-m', 'debugpy.adapter' };
 }
 
@@ -12,12 +12,12 @@ dap.configurations.python = {
         name = "Launch file";
         program = "${file}";
         pythonPath = function()
-            return '/Users/sh_home/opt/anaconda3/bin/python3'
+            return '/Users/sunghyouk/opt/anaconda3/bin/python3'
         end;
     },
 }
 
-require('dap-python').setup('/Users/sh_home/opt/anaconda3/bin/python3')
+require('dap-python').setup('/Users/sunghyouk/opt/anaconda3')
 
 -- Setting breakpoints via :lua require'dap'.toggle_breakpoint().
 

@@ -1,10 +1,8 @@
-" setting for vim-plug (Neo-vim plugin manager)
+" Through neovim plugin manager
 call plug#begin('~/.vim/plugged')
-    "Plugin for start window
-    Plug 'mhinz/vim-startify'
+    Plug 'mhinz/vim-startify' " Plugin for start window
     Plug 'airblade/vim-rooter' " change the project directory, freely
   
-    " Plugin for file/class/function/variable/tags searching
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'liuchengxu/vista.vim' " WARN: optional plugin is needed all
 
@@ -13,10 +11,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
 
     Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns', 'null-ls'
+    Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag, fd install needed in terminal
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE: for use telescope, needed
-    Plug 'nvim-lua/popup.nvim'
-
+    
     " Plugin for todo
     Plug 'folke/todo-comments.nvim' " WARN: ripgrep, rg, ag install needed in terminal
     Plug 'folke/trouble.nvim' " NOTE: It is needed for 'todo-comments'
@@ -85,6 +83,7 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for vimtex
     Plug 'lervag/vimtex'
+    "Plug 'mhinz/neovim-remote'
     
     " Plugin for pandoc
     Plug 'vim-pandoc/vim-pandoc'
@@ -108,9 +107,61 @@ endfor
 
 colorscheme nordfox " nightfox, nordfox, dawnfox, duskfox, dayfox
 
+let g:python_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/Users/sunghyouk/opt/anaconda3/bin/python3'
+
+" =====Custom setting
+filetype plugin indent on
+syntax enable " 형식별 구문 강조 표시
+
+set nocompatible
+set termguicolors " this variable must be enabled for colors to be applied properly for nvim-tree, bufferline (NOTE)
+set hidden
+set number " 라인 넘버 표시. (= nu)
+set signcolumn=number
+set showcmd " 사용자가 입력한 명령어 표시
+set showmatch " 현재 선택된 괄호의 쌍을 표시
+set relativenumber " 커서를 기준으로 라인 넘버 표시. 커서 위치에 따라 바뀜. (= rnu)
+set cursorline " 커서가 있는 라인을 강조 표시. (= cul)
+set ruler " 커서 위치 표시. (= ru)
+set laststatus=2 " 상태바 표시. (= ls) [0: 상태바 미표시 / 1: 2개 이상의 윈도우에서 표시 / 2: 항상 표시]
+set mouse=a " 마우스로 스크롤 및 리사이즈 가능. [n : Normal mode / v : Visual mode / i : Insert mode / a : All modes]
+
+" Searching setting
+set hlsearch " 검색된 결과 강조 표시. (= hls)
+set ignorecase " 검색시 대소문자를 구분하지 않음. (= ic)
+set incsearch " 검색어를 입력할 때마다 일치하는 문자열을 강조해서 표시. (= is)
+set smartcase " ignore 옵션이 켜져있더라도 검색어에 대문자가 있다면 정확히 일치하는 문자열을 찾음. (= scs)
+
+" Indentation and Tab setting
+set autoindent " 새로운 라인이 추가될 때, 이전 라인의 들여쓰기에 자동으로 맞춤. (= ai)
+set textwidth=120 " lines longer than 119 columns will be broken
+set expandtab  " Tab을 Space로 변경. (= et)
+set tabstop=4 " 탭으로 들여쓰기시 사용할 스페이스바 개수. (= ts)
+set shiftwidth=4 " <<, >> 으로 들여쓰기시 사용할 스페이스바 개수. (= sw)
+set shiftround
+set softtabstop=4 " 스페이스바 n개를 하나의 탭으로 처리. (= sts)
+" ex) 스페이스바 4개가 연속으로 있다면 백스페이스로 스페이스바를 지우면 스페이스바 4개를 하나의 탭으로 인식해 삭제.
+
+" Input setting
+set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
+set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백스페이스로 지움.
+set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
+set pastetoggle=<F3> " paste 옵션이 적용되면 들여쓰기가 제대로 작동하지 않기 때문에 toggle식으로 옵션을 키고 끌 수 있음.
+set fileencodings=utf-8
+
+" 마지막으로 수정된 곳에 커서를 위치함
+au BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "norm g`\"" |
+\ endif
+
 " =====vimtex
-let g:vimtex_view_method='zathura'
+let g:tex_flavor='latex'
+"let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
+
+"let g:vimtex_compiler_progname='nvr'
 
 " =====vim-pandoc
 let g:pandoc#spell#enabled=0
@@ -128,7 +179,9 @@ let g:neoterm_callbacks = {}
 " =====
 let g:diminactive_enable_focus=1
 
-"let g:loaded_perl_provider=0 " Perl provider disable
+" ===== Markdown Preview
+let g:nvim_markdown_preview_theme='solarized-light'
+
 " =====Setting for keymap
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
@@ -182,49 +235,3 @@ vnoremap <silent> <localleader>cc :TREPLSendSelection<CR>
 
 " =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
 tnoremap <silent><ESC> <C-\><C-n>
-
-" =====Custom setting
-filetype plugin indent on
-syntax on " 형식별 구문 강조 표시
-
-set nocompatible
-set termguicolors " this variable must be enabled for colors to be applied properly for nvim-tree, bufferline (NOTE)
-set hidden
-set number " 라인 넘버 표시. (= nu)
-set signcolumn=number
-set showcmd " 사용자가 입력한 명령어 표시
-set showmatch " 현재 선택된 괄호의 쌍을 표시
-set relativenumber " 커서를 기준으로 라인 넘버 표시. 커서 위치에 따라 바뀜. (= rnu)
-set cursorline " 커서가 있는 라인을 강조 표시. (= cul)
-set ruler " 커서 위치 표시. (= ru)
-set laststatus=2 " 상태바 표시. (= ls) [0: 상태바 미표시 / 1: 2개 이상의 윈도우에서 표시 / 2: 항상 표시]
-set mouse=a " 마우스로 스크롤 및 리사이즈 가능. [n : Normal mode / v : Visual mode / i : Insert mode / a : All modes]
-
-" Searching setting
-set hlsearch " 검색된 결과 강조 표시. (= hls)
-set ignorecase " 검색시 대소문자를 구분하지 않음. (= ic)
-set incsearch " 검색어를 입력할 때마다 일치하는 문자열을 강조해서 표시. (= is)
-set smartcase " ignore 옵션이 켜져있더라도 검색어에 대문자가 있다면 정확히 일치하는 문자열을 찾음. (= scs)
-
-" Indentation and Tab setting
-set autoindent " 새로운 라인이 추가될 때, 이전 라인의 들여쓰기에 자동으로 맞춤. (= ai)
-set textwidth=120 " lines longer than 119 columns will be broken
-set expandtab  " Tab을 Space로 변경. (= et)
-set tabstop=4 " 탭으로 들여쓰기시 사용할 스페이스바 개수. (= ts)
-set shiftwidth=4 " <<, >> 으로 들여쓰기시 사용할 스페이스바 개수. (= sw)
-set shiftround
-set softtabstop=4 " 스페이스바 n개를 하나의 탭으로 처리. (= sts)
-" ex) 스페이스바 4개가 연속으로 있다면 백스페이스로 스페이스바를 지우면 스페이스바 4개를 하나의 탭으로 인식해 삭제.
-
-" Input setting
-set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
-set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백스페이스로 지움.
-set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
-set pastetoggle=<F3> " paste 옵션이 적용되면 들여쓰기가 제대로 작동하지 않기 때문에 toggle식으로 옵션을 키고 끌 수 있음.
-set fileencodings=utf-8
-
-" 마지막으로 수정된 곳에 커서를 위치함
-au BufReadPost *
-\ if line("'\"") > 0 && line("'\"") <= line("$") |
-\ exe "norm g`\"" |
-\ endif
