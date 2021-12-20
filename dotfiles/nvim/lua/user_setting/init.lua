@@ -27,10 +27,6 @@ require('user_setting/sniprun')
 require('user_setting/lsp_install')
 require('user_setting/symbols')
 
--- for DAP
-require('user_setting/dap')
-require('user_setting/dap_ui')
-
 -- for nvim-notify
 require('user_setting/notify')
 

@@ -144,6 +144,8 @@ alias cat="bat"
 alias ls="lsd"
 alias ll="ls -alhF"
 
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh" # This loads nvm 
@@ -158,6 +160,9 @@ export PATH="$HOME/.plenv/bin:$PATH"
 eval "$(plenv init - zsh)"
 
 # Fuzzy finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# FZF custom function
 function fzfv()
 {
     fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
@@ -212,4 +217,4 @@ export FZF_CTRL_R_OPTS="
 --exact
 --expect=ctrl-x
 "
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

@@ -1,10 +1,8 @@
-" setting for vim-plug (Neo-vim plugin manager)
+" Through neovim plugin manager
 call plug#begin('~/.vim/plugged')
-    "Plugin for start window
-    Plug 'mhinz/vim-startify'
+    Plug 'mhinz/vim-startify' " Plugin for start window
     Plug 'airblade/vim-rooter' " change the project directory, freely
   
-    " Plugin for file/class/function/variable/tags searching
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'liuchengxu/vista.vim' " WARN: optional plugin is needed all
 
@@ -13,10 +11,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
 
     Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns', 'null-ls'
+    Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag, fd install needed in terminal
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE: for use telescope, needed
-    Plug 'nvim-lua/popup.nvim'
-
+    
     " Plugin for todo
     Plug 'folke/todo-comments.nvim' " WARN: ripgrep, rg, ag install needed in terminal
     Plug 'folke/trouble.nvim' " NOTE: It is needed for 'todo-comments'
@@ -25,7 +23,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/playground' " NOTE: for USAGE: :TSInstall query - :TSPlaygroundToggle to view the tree-sitter information
     Plug 'jose-elias-alvarez/null-ls.nvim'
-    Plug 'tpope/vim-commentary' " NOTE: for USAGE: space + /
+    Plug 'tpope/vim-commentary' " NOTE: for USAGE: gc{motion}
     Plug 'lukas-reineke/indent-blankline.nvim'
 
     " Plugin for Language support protocol/complete suggestion/code snippet
@@ -46,10 +44,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
-    Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
-    Plug 'mfussenegger/nvim-dap-python'
-    Plug 'nvim-telescope/telescope-dap.nvim'
-    Plug 'rcarriga/nvim-dap-ui'
+    "Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
+    "Plug 'mfussenegger/nvim-dap-python'
+    "Plug 'nvim-telescope/telescope-dap.nvim'
+    "Plug 'rcarriga/nvim-dap-ui'
 
     " Plugin for markdown
     Plug 'davidgranstrom/nvim-markdown-preview'
@@ -77,6 +75,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'windwp/nvim-autopairs'
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'easymotion/vim-easymotion'
+    Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-entire' " NOTE: ae - targets the entire content, ie - does not include leading and trailing empty lines
 
     " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
@@ -93,7 +93,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'lukas-reineke/headlines.nvim'
     Plug 'akinsho/org-bullets.nvim'
 
-    " NOTE: decide whether install telescope-project or not
 call plug#end()
 
 " =====Call user lua setting
@@ -106,84 +105,12 @@ endfor
 
 colorscheme nordfox " nightfox, nordfox, dawnfox, duskfox, dayfox
 
-" =====vimtex
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-
-" =====vim-pandoc
-let g:pandoc#spell#enabled=0
-
-" =====neoterm
-let g:neoterm_callbacks = {}
-    function! g:neoterm_callbacks.before_new()
-      if winwidth('.') > 100
-        let g:neoterm_default_mod = 'botright vertical'
-      else
-        let g:neoterm_default_mod = 'botright'
-      end
-    endfunction
-
-" =====
-let g:diminactive_enable_focus=1
-
-"let g:loaded_perl_provider=0 " Perl provider disable
-" =====Setting for keymap
-" =====vimwiki
-command! WikiIndex :VimwikiIndex
-nmap <LocalLeader>ww <Plug>VimwikiIndex
-" nmap <LocalLeader>wt <Plug>VimwikiTabIndex
-nmap <LocalLeader>ws <Plug>VimwikiUISelect
-nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
-nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
-nmap <LocalLeader>w<LocalLeader>t <Plug>VimwikiTabMakeDiaryNote
-nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
-nmap <LocalLeader>wh <Plug>Vimwiki2HTML
-nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
-nmap <LocalLeader>wt :VimwikiTable<CR>
-" nmap <Tab>d 0f]lli__date<Space><esc>
-
-" =====Sniprun
-nmap <leader>ff <Plug>SnipRun
-nmap <leader>f <Plug>SnipRunOperator
-vmap f <Plug>SnipRun
-
-" =====Debug adapter protocol
-nnoremap <silent> <leader>dd :lua require'dap'.continue()<CR>
-nnoremap <silent> <S-j> :lua require'dap'.step_over()<CR>
-nnoremap <silent> <S-l> :lua require'dap'.step_into()<CR>
-nnoremap <silent> <S-k> :lua require'dap'.step_out()<CR>
-nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
-nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-nnoremap <silent> <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR>
-nnoremap <silent> <leader>dl :lua require'dap'.repl.run_last()<CR>
-
-nnoremap <silent> <leader>dm :lua require('dap-python').test_method()<CR>
-nnoremap <silent> <leader>dc :lua require('dap-python').test_class()<CR>
-vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
-
-" ===== DAP custom keymap
-nnoremap <silent> <leader>dk :lua require'dap'.up()<CR>
-nnoremap <silent> <leader>dj :lua require'dap'.down()<CR>
-
-nnoremap <silent> <leader>di :lua require'dap.ui.widgets'.hover()<CR>
-nnoremap <silent> <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
-
-nnoremap <silent> <leader>df :Telescope dap frames<CR>
-nnoremap <silent> <leader>db :Telescope dap list_breakpoints<CR>
-
-nnoremap <silent> <leader>dq :lua require('dapui').toggle()<CR>
-
-" =====Neoterm
-nnoremap <silent> <localleader>cc :TREPLSendLine<CR>
-vnoremap <silent> <localleader>cc :TREPLSendSelection<CR>
-
-" =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
-tnoremap <silent><ESC> <C-\><C-n>
+let g:python_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/opt/anaconda3/bin/python3'
 
 " =====Custom setting
 filetype plugin indent on
-syntax on " 형식별 구문 강조 표시
+syntax enable " 형식별 구문 강조 표시
 
 set nocompatible
 set termguicolors " this variable must be enabled for colors to be applied properly for nvim-tree, bufferline (NOTE)
@@ -226,3 +153,81 @@ au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \ exe "norm g`\"" |
 \ endif
+
+" =====vimtex
+let g:tex_flavor='latex'
+"let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+
+" =====vim-pandoc
+let g:pandoc#spell#enabled=0
+
+" =====neoterm
+let g:neoterm_callbacks = {}
+    function! g:neoterm_callbacks.before_new()
+      if winwidth('.') > 100
+        let g:neoterm_default_mod = 'botright vertical'
+      else
+        let g:neoterm_default_mod = 'botright'
+      end
+    endfunction
+
+" =====for inactive terminal/pane
+let g:diminactive_enable_focus=1
+
+" ===== Markdown Preview
+let g:nvim_markdown_preview_theme='solarized-light'
+
+" =====Setting for keymap
+" =====vimwiki
+command! WikiIndex :VimwikiIndex
+nmap <LocalLeader>ww <Plug>VimwikiIndex
+" nmap <LocalLeader>wt <Plug>VimwikiTabIndex
+nmap <LocalLeader>ws <Plug>VimwikiUISelect
+nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
+nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
+nmap <LocalLeader>w<LocalLeader>t <Plug>VimwikiTabMakeDiaryNote
+nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
+nmap <LocalLeader>wh <Plug>Vimwiki2HTML
+nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
+nmap <LocalLeader>wt :VimwikiTable<CR>
+" nmap <Tab>d 0f]lli__date<Space><esc>
+
+" =====Sniprun
+nmap <leader>ff <Plug>SnipRun
+nmap <leader>f <Plug>SnipRunOperator
+vmap f <Plug>SnipRun
+
+" =====Debug adapter protocol
+"nnoremap <silent> <leader>dd :lua require'dap'.continue()<CR>
+"nnoremap <silent> <S-j> :lua require'dap'.step_over()<CR>
+"nnoremap <silent> <S-l> :lua require'dap'.step_into()<CR>
+"nnoremap <silent> <S-k> :lua require'dap'.step_out()<CR>
+"nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+"nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+"nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+"nnoremap <silent> <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR>
+"nnoremap <silent> <leader>dl :lua require'dap'.repl.run_last()<CR>
+
+"nnoremap <silent> <leader>dm :lua require('dap-python').test_method()<CR>
+"nnoremap <silent> <leader>dc :lua require('dap-python').test_class()<CR>
+"vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
+
+" ===== DAP custom keymap
+"nnoremap <silent> <leader>dk :lua require'dap'.up()<CR>
+"nnoremap <silent> <leader>dj :lua require'dap'.down()<CR>
+
+"nnoremap <silent> <leader>di :lua require'dap.ui.widgets'.hover()<CR>
+"nnoremap <silent> <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
+
+"nnoremap <silent> <leader>df :Telescope dap frames<CR>
+"nnoremap <silent> <leader>db :Telescope dap list_breakpoints<CR>
+
+"nnoremap <silent> <leader>dq :lua require('dapui').toggle()<CR>
+
+" =====Neoterm
+nnoremap <silent> <localleader>cc :TREPLSendLine<CR>
+vnoremap <silent> <localleader>cc :TREPLSendSelection<CR>
+
+" =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
+tnoremap <silent><ESC> <C-\><C-n>
