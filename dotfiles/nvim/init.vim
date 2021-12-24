@@ -44,11 +44,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
-    "Plug 'mfussenegger/nvim-dap' " NOTE: base of DAP
-    "Plug 'mfussenegger/nvim-dap-python'
-    "Plug 'nvim-telescope/telescope-dap.nvim'
-    "Plug 'rcarriga/nvim-dap-ui'
-
     " Plugin for markdown
     Plug 'davidgranstrom/nvim-markdown-preview'
     
@@ -136,7 +131,7 @@ set autoindent " 새로운 라인이 추가될 때, 이전 라인의 들여쓰�
 set textwidth=120 " lines longer than 119 columns will be broken
 set expandtab  " Tab을 Space로 변경. (= et)
 set tabstop=4 " 탭으로 들여쓰기시 사용할 스페이스바 개수. (= ts)
-set shiftwidth=4 " <<, >> 으로 들여쓰기시 사용할 스페이스바 개수. (= sw)
+set shiftwidth=4 " <<, >> 으로 들여쓰기 시 사용할 스페이스바 개수. (= sw)
 set shiftround
 set softtabstop=4 " 스페이스바 n개를 하나의 탭으로 처리. (= sts)
 " ex) 스페이스바 4개가 연속으로 있다면 백스페이스로 스페이스바를 지우면 스페이스바 4개를 하나의 탭으로 인식해 삭제.
@@ -197,33 +192,6 @@ nmap <LocalLeader>wt :VimwikiTable<CR>
 nmap <leader>ff <Plug>SnipRun
 nmap <leader>f <Plug>SnipRunOperator
 vmap f <Plug>SnipRun
-
-" =====Debug adapter protocol
-"nnoremap <silent> <leader>dd :lua require'dap'.continue()<CR>
-"nnoremap <silent> <S-j> :lua require'dap'.step_over()<CR>
-"nnoremap <silent> <S-l> :lua require'dap'.step_into()<CR>
-"nnoremap <silent> <S-k> :lua require'dap'.step_out()<CR>
-"nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
-"nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-"nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-"nnoremap <silent> <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR>
-"nnoremap <silent> <leader>dl :lua require'dap'.repl.run_last()<CR>
-
-"nnoremap <silent> <leader>dm :lua require('dap-python').test_method()<CR>
-"nnoremap <silent> <leader>dc :lua require('dap-python').test_class()<CR>
-"vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
-
-" ===== DAP custom keymap
-"nnoremap <silent> <leader>dk :lua require'dap'.up()<CR>
-"nnoremap <silent> <leader>dj :lua require'dap'.down()<CR>
-
-"nnoremap <silent> <leader>di :lua require'dap.ui.widgets'.hover()<CR>
-"nnoremap <silent> <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
-
-"nnoremap <silent> <leader>df :Telescope dap frames<CR>
-"nnoremap <silent> <leader>db :Telescope dap list_breakpoints<CR>
-
-"nnoremap <silent> <leader>dq :lua require('dapui').toggle()<CR>
 
 " =====Neoterm
 nnoremap <silent> <localleader>cc :TREPLSendLine<CR>

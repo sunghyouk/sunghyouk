@@ -51,3 +51,4 @@ require('user_setting/headlines')
 -- for orgmode
 require('user_setting/orgmode')
 require('user_setting/org_bullet')
+require('user_setting/headlines')
