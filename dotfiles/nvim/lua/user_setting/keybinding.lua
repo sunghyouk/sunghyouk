@@ -47,6 +47,12 @@ map('v', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 -- markdown preview
 map('n', '<leader>m', '<cmd>MarkdownPreview<CR>', {noremap = true, silent = true})
 
+-- TroubleToggle
+map('n', '<F4>', '<cmd>TroubleToggle<CR>', {noremap = true, silent = true})
+
+-- SymbolsOutline
+map('n', '<F5>', '<cmd>SymbolsOutline<CR>', {noremap = true, silent = true})
+
 -- NOTE: 이하 keymapping은 init.vim에 있음
 -- sniprun
 -- vimwiki
@@ -71,4 +77,3 @@ map('n', '<leader>m', '<cmd>MarkdownPreview<CR>', {noremap = true, silent = true
 -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
--- NOTE: DAP는 init.vim에 설정되어 있음

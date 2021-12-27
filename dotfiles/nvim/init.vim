@@ -57,10 +57,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
-    Plug 'shaunsingh/nord.nvim'
-    Plug 'EdenEast/nightfox.nvim'
     Plug 'folke/lsp-colors.nvim'
 
+    " Plugin for Colorscheme
+    Plug 'shaunsingh/nord.nvim'
+    Plug 'EdenEast/nightfox.nvim'
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    
     " Plugin for notify
     Plug 'rcarriga/nvim-notify'
 
@@ -98,7 +101,9 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
-colorscheme nordfox " nightfox, nordfox, dawnfox, duskfox, dayfox
+"colorscheme nordfox " nightfox, nordfox, dawnfox, duskfox, dayfox
+"colorscheme nord
+colorscheme tokyonight " Storm, Night, Day
 
 let g:python_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/opt/anaconda3/bin/python3'
@@ -140,7 +145,6 @@ set softtabstop=4 " 스페이스바 n개를 하나의 탭으로 처리. (= sts)
 set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
 set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백스페이스로 지움.
 set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
-set pastetoggle=<F3> " paste 옵션이 적용되면 들여쓰기가 제대로 작동하지 않기 때문에 toggle식으로 옵션을 키고 끌 수 있음.
 set fileencodings=utf-8
 
 " 마지막으로 수정된 곳에 커서를 위치함
