@@ -25,7 +25,7 @@ map('n', '<leader>tf', '<cmd>NvimTreeFindFile<CR>', {noremap = true, silent = tr
 map('n', '<F1>', '<cmd>Startify<CR>', {noremap = true, silent = true})
 
 -- vista
-map('n', '<F3>', '<cmd>Vista<CR>', {noremap = true, silent = true})
+--map('n', '<F3>', '<cmd>Vista<CR>', {noremap = true, silent = true})
 
 -- fzf
 map('n', '<C-f>', '<cmd>Files<CR>', {noremap = true, silent =true})
@@ -51,7 +51,7 @@ map('n', '<leader>m', '<cmd>MarkdownPreview<CR>', {noremap = true, silent = true
 map('n', '<F4>', '<cmd>TroubleToggle<CR>', {noremap = true, silent = true})
 
 -- SymbolsOutline
-map('n', '<F5>', '<cmd>SymbolsOutline<CR>', {noremap = true, silent = true})
+map('n', '<F3>', '<cmd>SymbolsOutline<CR>', {noremap = true, silent = true})
 
 -- NOTE: 이하 keymapping은 init.vim에 있음
 -- sniprun

@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-rooter' " change the project directory, freely
   
     Plug 'kyazdani42/nvim-tree.lua'
-    Plug 'liuchengxu/vista.vim' " WARN: optional plugin is needed all
+    "Plug 'liuchengxu/vista.vim' " WARN: optional plugin is needed all
 
     " Plugin for string/grep/file searching
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -21,7 +21,7 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for coding
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/playground' " NOTE: for USAGE: :TSInstall query - :TSPlaygroundToggle to view the tree-sitter information
+    "Plug 'nvim-treesitter/playground' " NOTE: for USAGE: :TSInstall query - :TSPlaygroundToggle to view the tree-sitter information
     Plug 'jose-elias-alvarez/null-ls.nvim'
     Plug 'tpope/vim-commentary' " NOTE: for USAGE: gc{motion}
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -57,6 +57,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
+    "Plug 'sidebar-nvim/sidebar.nvim'
     Plug 'folke/lsp-colors.nvim'
 
     " Plugin for Colorscheme
@@ -101,12 +102,15 @@ for include_file in uniq(sort(globpath(&rtp, 'vim-include/*.vim', 0, 1)))
     execute "source " . include_file
 endfor
 
-"colorscheme nordfox " nightfox, nordfox, dawnfox, duskfox, dayfox
-"colorscheme nord
-colorscheme tokyonight " Storm, Night, Day
+" =====FZF
+set rtp+=/usr/local/opt/fzf
 
-let g:python_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/opt/anaconda3/bin/python3'
+colorscheme nordfox " nightfox, nordfox, dawnfox, duskfox, dayfox
+"colorscheme nord
+"colorscheme tokyonight " Storm, Night, Day
+
+"let g:python_host_prog='/usr/bin/python2'
+"let g:python3_host_prog='/opt/anaconda3/bin/python3'
 
 " =====Custom setting
 filetype plugin indent on
