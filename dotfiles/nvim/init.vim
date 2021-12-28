@@ -105,7 +105,7 @@ endfor
 " =====FZF
 set rtp+=/usr/local/opt/fzf
 
-colorscheme nordfox " nightfox, nordfox, dawnfox, duskfox, dayfox
+colorscheme duskfox " nightfox, nordfox, dawnfox, duskfox, dayfox
 "colorscheme nord
 "colorscheme tokyonight " Storm, Night, Day
 

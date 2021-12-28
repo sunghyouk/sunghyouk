@@ -3,7 +3,7 @@ local nightfox = require('nightfox')
 -- This function set the configuration of nightfox. If a value is not passed in the setup function
 -- it will be taken from the default configuration above
 nightfox.setup({
-  fox = "nordfox",
+  fox = "duskfox",
   -- change the colorscheme to use nordfox | nightfox | dayfox | dawnfox | duskfox | randfox (random)
   styles = {
     comments = "italic", -- change style of comments to be italic
