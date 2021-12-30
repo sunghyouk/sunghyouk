@@ -105,8 +105,8 @@ endfor
 " =====FZF
 set rtp+=/usr/local/opt/fzf
 
-colorscheme duskfox " nightfox, nordfox, dawnfox, duskfox, dayfox
 "colorscheme nord
+colorscheme duskfox " nightfox, nordfox, dawnfox, duskfox, dayfox
 "colorscheme tokyonight " Storm, Night, Day
 
 "let g:python_host_prog='/usr/bin/python2'
@@ -135,6 +135,10 @@ set ignorecase " 검색시 대소문자를 구분하지 않음. (= ic)
 set incsearch " 검색어를 입력할 때마다 일치하는 문자열을 강조해서 표시. (= is)
 set smartcase " ignore 옵션이 켜져있더라도 검색어에 대문자가 있다면 정확히 일치하는 문자열을 찾음. (= scs)
 
+" Autocompletion setting
+set wildmenu
+set wildmode=full
+
 " Indentation and Tab setting
 set autoindent " 새로운 라인이 추가될 때, 이전 라인의 들여쓰기에 자동으로 맞춤. (= ai)
 set textwidth=120 " lines longer than 119 columns will be broken
@@ -159,7 +163,7 @@ au BufReadPost *
 
 " =====vimtex
 let g:tex_flavor='latex'
-"let g:vimtex_view_method='zathura'
+let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 
 " =====vim-pandoc
@@ -182,6 +186,12 @@ let g:diminactive_enable_focus=1
 let g:nvim_markdown_preview_theme='solarized-light'
 
 " =====Setting for keymap
+" =====C++
+" Compile
+nnoremap <silent> <F7> :<c-u>make %< <CR>
+" Execute
+nnoremap <silent> <F5> :<c-u>term ./%< <CR>
+
 " =====vimwiki
 command! WikiIndex :VimwikiIndex
 nmap <LocalLeader>ww <Plug>VimwikiIndex

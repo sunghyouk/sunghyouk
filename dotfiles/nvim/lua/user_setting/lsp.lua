@@ -40,9 +40,9 @@ local on_attach = function(client, bufnr)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
--- Use a loop t conveniently call 'setup' on multiple servers and
+-- Use a loop conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {'r_language_server', 'sumneko_lua', 'texlab', 'vimls', 'pyright'}
+local servers = {'r_language_server', 'sumneko_lua', 'texlab', 'vimls', 'pyright', 'clangd', 'tsserver'}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,
