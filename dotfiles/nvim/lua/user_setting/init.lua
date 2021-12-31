@@ -5,7 +5,6 @@ require('user_setting/indent_blankline')
 require('user_setting/nord')
 require('user_setting/nightfox')
 --require('user_setting/tokyonight')
---require('user_setting/sidebar')
 
 -- nvim-tree
 require('user_setting/nvimtree')
@@ -48,7 +47,4 @@ require('user_setting/autopair')
 require('user_setting/neoscr')
 
 -- for code block highlighting in markdown (rmd) documents with orgmode, vimwiki
--- for orgmode
-require('user_setting/orgmode')
-require('user_setting/org_bullet')
 require('user_setting/headlines')

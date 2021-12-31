@@ -8,9 +8,12 @@ map('n', '<C-l>', '<C-w>l', {noremap = true, silent = false})
 map('n', '<C-j>', '<C-w>j', {noremap = true, silent = false})
 map('n', '<C-k>', '<C-w>k', {noremap = true, silent = false})
 
-map('n', '<S-p>', '<cmd>bp<CR>', {noremap = true, silent = false}) -- previous buffer
-map('n', '<S-n>', '<cmd>bn<CR>', {noremap = true, silent = false}) -- next buffer
-map('n', '<S-d>', '<cmd>bd<CR>', {noremap = true, silent = false}) -- close buffer
+map('n', '[b', '<cmd>bprevious<CR>', {noremap = true, silent = false}) -- previous buffer
+map('n', ']b', '<cmd>bnext<CR>', {noremap = true, silent = false}) -- next buffer
+map('n', '[B', '<cmd>bfirst<CR>', {noremap = true, silent = false}) -- first buffer
+map('n', ']B', '<cmd>blast<CR>', {noremap = true, silent = false}) -- last buffer
+
+map('n', '<S-d>', '<cmd>bdelete<CR>', {noremap = true, silent = false}) -- close buffer
 
 map('i', 'jk', '<ESC>', {noremap = true, silent = false})
 map('i', 'kj', '<ESC>', {noremap = true, silent = false})
@@ -23,9 +26,6 @@ map('n', '<leader>tf', '<cmd>NvimTreeFindFile<CR>', {noremap = true, silent = tr
 
 -- startify
 map('n', '<F1>', '<cmd>Startify<CR>', {noremap = true, silent = true})
-
--- vista
---map('n', '<F3>', '<cmd>Vista<CR>', {noremap = true, silent = true})
 
 -- fzf
 map('n', '<C-f>', '<cmd>Files<CR>', {noremap = true, silent =true})

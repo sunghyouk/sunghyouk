@@ -4,7 +4,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-rooter' " change the project directory, freely
   
     Plug 'kyazdani42/nvim-tree.lua'
-    "Plug 'liuchengxu/vista.vim' " WARN: optional plugin is needed all
 
     " Plugin for string/grep/file searching
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -21,7 +20,6 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for coding
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    "Plug 'nvim-treesitter/playground' " NOTE: for USAGE: :TSInstall query - :TSPlaygroundToggle to view the tree-sitter information
     Plug 'jose-elias-alvarez/null-ls.nvim'
     Plug 'tpope/vim-commentary' " NOTE: for USAGE: gc{motion}
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -57,7 +55,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'akinsho/bufferline.nvim'
-    "Plug 'sidebar-nvim/sidebar.nvim'
     Plug 'folke/lsp-colors.nvim'
 
     " Plugin for Colorscheme
@@ -77,6 +74,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-entire' " NOTE: ae - targets the entire content, ie - does not include leading and trailing empty lines
 
+    Plug 'lukas-reineke/headlines.nvim'
+
     " Plugin for vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
@@ -86,11 +85,6 @@ call plug#begin('~/.vim/plugged')
     " Plugin for pandoc
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax' " NOTE: more syntax highlight and better conceal feature
-
-    " Plugin for nvim-orgmode and accessories
-    Plug 'nvim-orgmode/orgmode' " NOTE: main plugin, it is needed tree-sitter plugin
-    Plug 'lukas-reineke/headlines.nvim'
-    Plug 'akinsho/org-bullets.nvim'
 
 call plug#end()
 
@@ -160,30 +154,6 @@ au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \ exe "norm g`\"" |
 \ endif
-
-" =====vimtex
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-
-" =====vim-pandoc
-let g:pandoc#spell#enabled=0
-
-" =====neoterm
-let g:neoterm_callbacks = {}
-    function! g:neoterm_callbacks.before_new()
-      if winwidth('.') > 100
-        let g:neoterm_default_mod = 'botright vertical'
-      else
-        let g:neoterm_default_mod = 'botright'
-      end
-    endfunction
-
-" =====for inactive terminal/pane
-let g:diminactive_enable_focus=1
-
-" ===== Markdown Preview
-let g:nvim_markdown_preview_theme='solarized-light'
 
 " =====Setting for keymap
 " =====C++
