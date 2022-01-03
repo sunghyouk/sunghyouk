@@ -100,7 +100,7 @@ endfor
 set rtp+=/usr/local/opt/fzf
 
 "colorscheme nord
-colorscheme duskfox " nightfox, nordfox, dawnfox, duskfox, dayfox
+colorscheme nightfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
 "colorscheme tokyonight " Storm, Night, Day
 
 "let g:python_host_prog='/usr/bin/python2'
