@@ -45,7 +45,7 @@ map('n', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 map('v', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 
 -- markdown preview
-map('n', '<leader>m', '<cmd>MarkdownPreview<CR>', {noremap = true, silent = true})
+map('n', '<leader>m', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
 
 -- TroubleToggle
 map('n', '<F4>', '<cmd>TroubleToggle<CR>', {noremap = true, silent = true})

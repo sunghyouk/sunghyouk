@@ -43,7 +43,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'akinsho/toggleterm.nvim'
 
     " Plugin for markdown
-    Plug 'davidgranstrom/nvim-markdown-preview'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']} 
     
     " Plugin for Passive setting
     Plug 'blueyed/vim-diminactive' " NOTE: inactive buffer will gray
