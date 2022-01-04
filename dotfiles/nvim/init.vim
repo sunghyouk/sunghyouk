@@ -1,7 +1,7 @@
 " Through neovim plugin manager
 call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify' " Plugin for start window
-    Plug 'airblade/vim-rooter' " change the project directory, freely
+    "Plug 'airblade/vim-rooter' " change the project directory, freely
   
     Plug 'kyazdani42/nvim-tree.lua'
 
@@ -39,7 +39,7 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for python REPL, debug adapter protocol
     Plug 'kassio/neoterm'
-    Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+    "Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
     " Plugin for markdown
@@ -103,8 +103,12 @@ set rtp+=/usr/local/opt/fzf
 colorscheme nightfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
 "colorscheme tokyonight " Storm, Night, Day
 
-"let g:python_host_prog='/usr/bin/python2'
-"let g:python3_host_prog='/opt/anaconda3/bin/python3'
+" =====Programming language setting
+let g:python_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/opt/anaconda3/bin/python3'
+let g:ruby_host_prog='/Users/sunghyouk/.rbenv/shims/neovim-ruby-host'
+let g:perl_host_prog='/Users/sunghyouk/.plenv/shims/perl'
+let g:node_host_prog='/Users/sunghyouk/.nvm/versions/node/v16.13.1/bin/neovim-node-host'
 
 " =====Custom setting
 filetype plugin indent on
@@ -144,7 +148,7 @@ set softtabstop=4 " 스페이스바 n개를 하나의 탭으로 처리. (= sts)
 " ex) 스페이스바 4개가 연속으로 있다면 백스페이스로 스페이스바를 지우면 스페이스바 4개를 하나의 탭으로 인식해 삭제.
 
 " Input setting
-set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
+set clipboard+=unnamedplus " vim에서 복사한 내용이 클립보드에 저장
 set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백스페이스로 지움.
 set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
 set fileencodings=utf-8
@@ -175,11 +179,6 @@ nmap <LocalLeader>wh <Plug>Vimwiki2HTML
 nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
 nmap <LocalLeader>wt :VimwikiTable<CR>
 " nmap <Tab>d 0f]lli__date<Space><esc>
-
-" =====Sniprun
-nmap <leader>ff <Plug>SnipRun
-nmap <leader>f <Plug>SnipRunOperator
-vmap f <Plug>SnipRun
 
 " =====Neoterm
 nnoremap <silent> <localleader>cc :TREPLSendLine<CR>
