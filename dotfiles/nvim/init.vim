@@ -63,7 +63,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     
     " Plugin for notify
-    Plug 'rcarriga/nvim-notify'
+    "Plug 'rcarriga/nvim-notify'
 
     " Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
     Plug 'tpope/vim-repeat'
@@ -160,6 +160,9 @@ au BufReadPost *
 \ endif
 
 " =====Setting for keymap
+" =====현재 활성 버퍼의 경로로 확장 :%% 입력
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
 " =====C++
 " Compile
 nnoremap <silent> <F7> :<c-u>make %< <CR>

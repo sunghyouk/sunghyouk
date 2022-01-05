@@ -53,26 +53,6 @@ for _, lsp in ipairs(servers) do
     }
 end
 
--- 2) null-ls - to independent setup
-local null_ls = require('null-ls')
-
--- null-ls is a general purpose language server that doesn't need
--- the same config as actual language servers like tsserver, so
--- setup is a little different.
-null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.flake8,
-        --null_ls.builtins.diagnostics.markdownlint,
-
-        null_ls.builtins.formatting.black,
-        --null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.format_r,
-        --null_ls.builtins.formatting.stylua,
-        
-        --null_ls.builtins.code_actions.gitsigns,
-    }
-})
-
 -- 3) nvim-cmp
 local cmp = require('cmp')
 local lspkind = require('lspkind')
