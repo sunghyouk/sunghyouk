@@ -28,9 +28,6 @@ require('user_setting/lsp_install')
 require('user_setting/null_ls')
 require('user_setting/symbols')
 
--- for nvim-notify
-require('user_setting/notify')
-
 -- for toggleterm
 require('user_setting/toggleterm')
 

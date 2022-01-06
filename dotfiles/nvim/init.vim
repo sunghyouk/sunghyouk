@@ -1,14 +1,11 @@
 " Through neovim plugin manager
 call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify' " Plugin for start window
-    "Plug 'airblade/vim-rooter' " change the project directory, freely
-  
     Plug 'kyazdani42/nvim-tree.lua'
 
     " Plugin for string/grep/file searching
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-
     Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns', 'null-ls'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag, fd install needed in terminal
@@ -39,7 +36,6 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for python REPL, debug adapter protocol
     Plug 'kassio/neoterm'
-    "Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
     " Plugin for markdown
@@ -62,9 +58,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'EdenEast/nightfox.nvim'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     
-    " Plugin for notify
-    "Plug 'rcarriga/nvim-notify'
-
     " Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
@@ -73,7 +66,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'easymotion/vim-easymotion'
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-entire' " NOTE: ae - targets the entire content, ie - does not include leading and trailing empty lines
-
     Plug 'lukas-reineke/headlines.nvim'
 
     " Plugin for vimwiki
@@ -105,7 +97,7 @@ colorscheme nightfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, d
 
 " =====Programming language setting
 let g:python_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/opt/anaconda3/bin/python3'
+let g:python3_host_prog='/Users/sunghyouk/opt/anaconda3/bin/python3'
 let g:ruby_host_prog='/Users/sunghyouk/.rbenv/shims/neovim-ruby-host'
 let g:perl_host_prog='/Users/sunghyouk/.plenv/shims/perl'
 let g:node_host_prog='/Users/sunghyouk/.nvm/versions/node/v16.13.1/bin/neovim-node-host'
