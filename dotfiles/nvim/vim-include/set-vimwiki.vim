@@ -1,18 +1,8 @@
 " =====vimwiki
 let g:vimwiki_list = [
     \{
-    \   'path': '~/OneDrive/vimwiki',
+    \   'path': '~/github/sunghyouk.github.io/_posts/preposts',
     \   'ext' : '.md',
-    \   'diary_rel_path': '.',
-    \},
-    \{
-    \   'path': '~/OneDrive/vimwiki_study',
-    \   'ext': '.md',
-    \   'diary_rel_path': '.',
-    \},
-    \{
-    \   'path': '~/OneDrive/vimwiki_article',
-    \   'ext': '.md',
     \   'diary_rel_path': '.',
     \}
   \]
