@@ -53,8 +53,10 @@ map('n', '<F4>', '<cmd>TroubleToggle<CR>', {noremap = true, silent = true})
 -- SymbolsOutline
 map('n', '<F3>', '<cmd>SymbolsOutline<CR>', {noremap = true, silent = true})
 
+-- Vista
+map('n', '<F5>', '<cmd>Vista!!<CR>', {noremap = true, silent = true} )
+
 -- NOTE: 이하 keymapping은 init.vim에 있음
--- sniprun
 -- vimwiki
 
 -- NOTE: lsp.lua에 설정되어 있음
