@@ -42,7 +42,7 @@ capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 -- Use a loop conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {'r_language_server', 'sumneko_lua', 'texlab', 'vimls', 'pyright', 'clangd', 'tsserver'}
+local servers = {'r_language_server', 'sumneko_lua', 'texlab', 'vimls', 'pyright', 'clangd', 'tsserver', 'remark_ls'}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,

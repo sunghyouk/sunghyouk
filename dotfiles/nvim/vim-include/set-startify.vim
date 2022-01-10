@@ -17,6 +17,6 @@ let g:startify_lists = [
 let g:startify_bookmarks = [
 		\ { 'l': '~/.config/nvim/lua/user_setting/init.lua' },
 		\ { 'v': '~/.config/nvim/init.vim' },
-		\ { 'w': '~/github/sunghyouk.github.io/_posts/preposts/index.md' },
+		\ { 'w': '~/github/sunghyouk.github.io/preposts/index.md' },
 		\ { 'z': '~/.zshrc' },
 		\]

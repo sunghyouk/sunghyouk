@@ -1,7 +1,7 @@
 " =====vimwiki
 let g:vimwiki_list = [
     \{
-    \   'path': '~/github/sunghyouk.github.io/_posts/preposts',
+    \   'path': '~/github/sunghyouk.github.io/preposts',
     \   'ext' : '.md',
     \   'diary_rel_path': '.',
     \}
