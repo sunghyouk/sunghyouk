@@ -141,7 +141,8 @@ set softtabstop=4 " 스페이스바 n개를 하나의 탭으로 처리. (= sts)
 " ex) 스페이스바 4개가 연속으로 있다면 백스페이스로 스페이스바를 지우면 스페이스바 4개를 하나의 탭으로 인식해 삭제.
 
 " Input setting
-set clipboard+=unnamedplus " vim에서 복사한 내용이 클립보드에 저장
+set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
+set pastetoggle=<F5>
 set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백스페이스로 지움.
 set history=1000 " 편집한 내용 저장 개수 (되돌리기 제한 설정)
 set fileencodings=utf-8
@@ -160,12 +161,12 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " Compile
 nnoremap <silent> <F7> :<c-u>make %< <CR>
 " Execute
-nnoremap <silent> <F5> :<c-u>term ./%< <CR>
+nnoremap <silent> <F6> :<c-u>term ./%< <CR>
 
-" =====vimwiki
+" =====Vimwiki
 command! WikiIndex :VimwikiIndex
 nmap <LocalLeader>ww <Plug>VimwikiIndex
-" nmap <LocalLeader>wt <Plug>VimwikiTabIndex
+"nmap <LocalLeader>wt <Plug>VimwikiTabIndex
 nmap <LocalLeader>ws <Plug>VimwikiUISelect
 nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
 nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
@@ -174,7 +175,7 @@ nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
 nmap <LocalLeader>wh <Plug>Vimwiki2HTML
 nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
 nmap <LocalLeader>wt :VimwikiTable<CR>
-" nmap <Tab>d 0f]lli__date<Space><esc>
+"nmap <Tab>d 0f]lli__date<Space><esc>
 
 " =====Neoterm
 nnoremap <silent> <localleader>cc :TREPLSendLine<CR>
