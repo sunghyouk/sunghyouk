@@ -61,8 +61,6 @@ map('n', '<leader><F2>', '<cmd>Toc<CR>', {noremap = true, silent = true})
 
 -- SidebarNvim
 map('n', '<leader>st', '<cmd>SidebarNvimToggle<CR>', {noremap = true, silent = true})
-map('n', '<leader>su', '<cmd>SidebarNvimUpdate<CR>', {noremap = true, silent = true})
-map('n', '<leader>sf', '<cmd>SidebarNvimFocus<CR>', {noremap = true, silent = true})
 
 -- NOTE: 이하 keymapping은 init.vim에 있음
 -- vimwiki

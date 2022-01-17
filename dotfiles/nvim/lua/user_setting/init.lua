@@ -45,4 +45,4 @@ require('user_setting/autopair')
 require('user_setting/neoscr')
 
 -- for code block highlighting in markdown (rmd) documents with orgmode, vimwiki
---require('user_setting/headlines')
+require('user_setting/headlines')
