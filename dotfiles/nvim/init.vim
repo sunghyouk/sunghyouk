@@ -39,6 +39,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'akinsho/toggleterm.nvim'
 
     " Plugin for markdown
+    Plug 'godlygeek/tabular'
+    Plug 'plasticboy/vim-markdown'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']} 
     
     " Plugin for Passive setting
