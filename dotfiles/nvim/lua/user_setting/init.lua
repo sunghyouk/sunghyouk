@@ -8,6 +8,7 @@ require('user_setting/nightfox')
 
 -- nvim-tree
 require('user_setting/nvimtree')
+require('user_setting/sidebar')
 
 -- telescope searching
 require('user_setting/telescope')
@@ -44,4 +45,4 @@ require('user_setting/autopair')
 require('user_setting/neoscr')
 
 -- for code block highlighting in markdown (rmd) documents with orgmode, vimwiki
-require('user_setting/headlines')
+--require('user_setting/headlines')

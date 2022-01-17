@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify' " Plugin for start window
     Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'sidebar-nvim/sidebar.nvim'
 
     " Plugin for string/grep/file searching
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
