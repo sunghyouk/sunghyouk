@@ -1,5 +1,5 @@
 -- Example config in Lua
-vim.g.tokyonight_style = "night"
+vim.g.tokyonight_style = "storm" -- NOTE: dark: storm (default), night, light: day
 vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 

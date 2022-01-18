@@ -96,7 +96,7 @@ endfor
 set rtp+=/usr/local/opt/fzf
 
 "colorscheme nord
-colorscheme dayfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
+"colorscheme dayfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
 "colorscheme tokyonight " Storm, Night, Day
 
 " =====Programming language setting
@@ -157,8 +157,11 @@ au BufReadPost *
 \ endif
 
 " =====Setting for keymap
+let maplocalleader="\<space>"
+
 " =====현재 활성 버퍼의 경로로 확장 :%% 입력
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " =====C++
 " Compile
@@ -171,14 +174,14 @@ command! WikiIndex :VimwikiIndex
 nmap <LocalLeader>ww <Plug>VimwikiIndex
 "nmap <LocalLeader>wt <Plug>VimwikiTabIndex
 nmap <LocalLeader>ws <Plug>VimwikiUISelect
-nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
-nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
-nmap <LocalLeader>w<LocalLeader>t <Plug>VimwikiTabMakeDiaryNote
-nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
+"nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
+"nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
+"nmap <LocalLeader>w<LocalLeader>t <Plug>VimwikiTabMakeDiaryNote
+"nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
 nmap <LocalLeader>wh <Plug>Vimwiki2HTML
 nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
 nmap <LocalLeader>wt :VimwikiTable<CR>
-"nmap <Tab>d 0f]lli__date<Space><esc>
+nmap <Tab>d 0f]lli__date<Space><esc>
 
 " =====Neoterm
 nnoremap <silent> <localleader>cc :TREPLSendLine<CR>

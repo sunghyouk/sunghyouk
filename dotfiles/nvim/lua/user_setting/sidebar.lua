@@ -8,9 +8,9 @@ require("sidebar-nvim").setup({
     update_interval = 1000,
     sections = { "datetime", "git", "diagnostics", "todos", "buffers", "files" },
     section_separator = "-----",
-    containers = {
-        attach_shell = "/bin/sh", show_all = true, interval = 5000,
-    },
+    --containers = {
+    --    attach_shell = "/bin/sh", show_all = true, interval = 5000,
+    -- },
     datetime = { format = "%a %b %d, %H:%M", clocks = { { name = "local" } } },
     todos = { ignored_paths = { "~" } },
     files = { show_hidden = false },
