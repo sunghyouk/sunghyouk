@@ -49,7 +49,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'folke/which-key.nvim'
     Plug 'karb94/neoscroll.nvim' " NOTE: smooth scroll when using <C-u>, <C-d>
     Plug 'simrat39/symbols-outline.nvim' "NOTE: tree-like view for symbols using LSP
-    Plug 'liuchengxu/vista.vim'
     
     " Plugin for color scheme, status bar
     Plug 'kyazdani42/nvim-web-devicons'
@@ -70,6 +69,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'easymotion/vim-easymotion'
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-entire' " NOTE: ae - targets the entire content, ie - does not include leading and trailing empty lines
+    Plug 'nelstrom/vim-visual-star-search' " NOTE: <leader>* - vim will recursively vimgrep for the word under the cursor or the visual selection. 
     Plug 'lukas-reineke/headlines.nvim'
 
     " Plugin for vimwiki
@@ -101,7 +101,7 @@ set rtp+=/usr/local/opt/fzf
 
 " =====Programming language setting
 let g:python_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/Users/sunghyouk/opt/anaconda3/bin/python3'
+let g:python3_host_prog='/opt/anaconda3/bin/python3'
 let g:ruby_host_prog='/Users/sunghyouk/.rbenv/shims/neovim-ruby-host'
 let g:perl_host_prog='/Users/sunghyouk/.plenv/shims/perl'
 let g:node_host_prog='/Users/sunghyouk/.nvm/versions/node/v16.13.1/bin/neovim-node-host'
@@ -165,9 +165,9 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " =====C++
 " Compile
-nnoremap <silent> <F7> :<c-u>make %< <CR>
+nnoremap <silent> <F6> :<c-u>make %< <CR>
 " Execute
-nnoremap <silent> <F6> :<c-u>term ./%< <CR>
+nnoremap <silent> <F7> :<c-u>term ./%< <CR>
 
 " =====Vimwiki
 command! WikiIndex :VimwikiIndex

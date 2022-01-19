@@ -1,16 +1,15 @@
 local map = vim.api.nvim_set_keymap
 
-map('n', '<C-h>', '<C-w>h', {noremap = true, silent = false})
-map('n', '<C-l>', '<C-w>l', {noremap = true, silent = false})
-map('n', '<C-j>', '<C-w>j', {noremap = true, silent = false})
-map('n', '<C-k>', '<C-w>k', {noremap = true, silent = false})
+map('n', '<M-h>', '<C-w>h', {noremap = true, silent = false})
+map('n', '<M-l>', '<C-w>l', {noremap = true, silent = false})
+map('n', '<M-j>', '<C-w>j', {noremap = true, silent = false})
+map('n', '<M-k>', '<C-w>k', {noremap = true, silent = false})
 
 map('n', '[b', '<cmd>bprevious<CR>', {noremap = true, silent = false}) -- previous buffer
 map('n', ']b', '<cmd>bnext<CR>', {noremap = true, silent = false}) -- next buffer
 map('n', '[B', '<cmd>bfirst<CR>', {noremap = true, silent = false}) -- first buffer
 map('n', ']B', '<cmd>blast<CR>', {noremap = true, silent = false}) -- last buffer
-
-map('n', '<S-d>', '<cmd>bdelete<CR>', {noremap = true, silent = false}) -- close buffer
+map('n', '<M-d>', '<cmd>bdelete<CR>', {noremap = true, silent = false}) -- close buffer
 
 map('i', 'jk', '<ESC>', {noremap = true, silent = false})
 map('i', 'kj', '<ESC>', {noremap = true, silent = false})
@@ -18,24 +17,23 @@ map('i', 'kj', '<ESC>', {noremap = true, silent = false})
 -- for plugin
 -- nvim tree
 map('n', '<F2>', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
-map('n', '<leader>tr', '<cmd>NvimTreeRefresh<CR>', {noremap = true, silent = true})
-map('n', '<leader>tf', '<cmd>NvimTreeFindFile<CR>', {noremap = true, silent = true})
 
 -- startify
 map('n', '<F1>', '<cmd>Startify<CR>', {noremap = true, silent = true})
 
 -- fzf
-map('n', '<C-f>', '<cmd>Files<CR>', {noremap = true, silent =true})
+map('n', '<leader>ff', '<cmd>Files<CR>', {noremap = true, silent =true})
 map('n', '<leader>fb', '<cmd>Buffers<CR>', {noremap = true, silent =true})
 map('n', '<leader>fg', '<cmd>Rg<CR>', {noremap = true, silent =true})
 map('n', '<leader>ft', '<cmd>Tags<CR>', {noremap = true, silent =true})
 map('n', '<leader>fm', '<cmd>Marks<CR>', {noremap = true, silent =true})
 
 -- telescope
-map('n', '<C-p>', '<cmd>Telescope find_files<CR>', {noremap = true, silent =true})
-map('n', '<C-g>', '<cmd>Telescope live_grep<CR>', {noremap = true, silent =true})
-map('n', '<C-b>', '<cmd>Telescope buffers<CR>', {noremap = true, silent =true})
-map('n', '<C-t>', '<cmd>Telescope help_tags<CR>', {noremap = true, silent =true})
+map('n', '<leader>tf', '<cmd>Telescope find_files<CR>', {noremap = true, silent =true})
+map('n', '<leader>tg', '<cmd>Telescope live_grep<CR>', {noremap = true, silent =true})
+map('n', '<leader>tb', '<cmd>Telescope buffers<CR>', {noremap = true, silent =true})
+map('n', '<leader>tt', '<cmd>Telescope help_tags<CR>', {noremap = true, silent =true})
+map('n', '<leader>tk', '<cmd>Telescope keymaps<CR>', {noremap = true, silent =true})
 
 -- commentary
 map('n', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
@@ -50,14 +48,11 @@ map('n', '<F4>', '<cmd>TroubleToggle<CR>', {noremap = true, silent = true})
 -- SymbolsOutline
 map('n', '<F3>', '<cmd>SymbolsOutline<CR>', {noremap = true, silent = true})
 
--- Vista
-map('n', '<leader><F3>', '<cmd>Vista!!<CR>', {noremap = true, silent = true})
-
 -- Edit markdown from plasticboy/vim-markdown
-map('n', '<leader><F2>', '<cmd>Toc<CR>', {noremap = true, silent = true})
+map('n', '<leader><F3>', '<cmd>Toc<CR>', {noremap = true, silent = true})
 
 -- SidebarNvim
-map('n', '<leader>st', '<cmd>SidebarNvimToggle<CR>', {noremap = true, silent = true})
+map('n', '<leader><F2>', '<cmd>SidebarNvimToggle<CR>', {noremap = true, silent = true})
 
 -- NOTE: 이하 keymapping은 init.vim에 있음
 -- vimwiki
