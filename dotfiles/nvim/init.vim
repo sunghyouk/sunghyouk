@@ -97,7 +97,7 @@ set rtp+=/usr/local/opt/fzf
 
 "colorscheme nord
 "colorscheme dayfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
-"colorscheme tokyonight " Storm, Night, Day
+"colorscheme tokyonight " Storm, Night, Day " WARN: set in tokyonight.lua
 
 " =====Programming language setting
 let g:python_host_prog='/usr/bin/python2'
@@ -136,7 +136,7 @@ set wildmode=full
 " Indentation and Tab setting
 set autoindent " 새로운 라인이 추가될 때, 이전 라인의 들여쓰기에 자동으로 맞춤. (= ai)
 set textwidth=120 " lines longer than 119 columns will be broken
-set expandtab  " Tab을 Space로 변경. (= et)
+set expandtab " Tab을 Space로 변경. (= et)
 set tabstop=4 " 탭으로 들여쓰기시 사용할 스페이스바 개수. (= ts)
 set shiftwidth=4 " <<, >> 으로 들여쓰기 시 사용할 스페이스바 개수. (= sw)
 set shiftround

@@ -54,6 +54,9 @@ map('n', '<leader><F3>', '<cmd>Toc<CR>', {noremap = true, silent = true})
 -- SidebarNvim
 map('n', '<leader><F2>', '<cmd>SidebarNvimToggle<CR>', {noremap = true, silent = true})
 
+-- PlugUpdate
+map('n', '<leader><F12>', '<cmd>PlugUpdate<CR>', {noremap = true, silent = true})
+
 -- NOTE: 이하 keymapping은 init.vim에 있음
 -- vimwiki
 
