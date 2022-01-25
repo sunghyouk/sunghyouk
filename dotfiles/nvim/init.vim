@@ -157,6 +157,9 @@ au BufReadPost *
 \ exe "norm g`\"" |
 \ endif
 
+" 파일을 저장할 때마다 코드 전체의 색인 파일을 새로 생성
+autocmd BufWritePost * call system("ctags -R")
+
 " =====Setting for keymap
 let maplocalleader="\<space>"
 
