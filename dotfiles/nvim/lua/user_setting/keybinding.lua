@@ -11,15 +11,15 @@ map('n', '[B', '<cmd>bfirst<CR>', {noremap = true, silent = false}) -- first buf
 map('n', ']B', '<cmd>blast<CR>', {noremap = true, silent = false}) -- last buffer
 map('n', '<M-d>', '<cmd>bdelete<CR>', {noremap = true, silent = false}) -- close buffer
 
-map('n', '[t', '<cmd>tprev<CR>', {noremap = true, silent = false}) -- previous buffer
-map('n', ']t', '<cmd>tnext<CR>', {noremap = true, silent = false}) -- next buffer
-map('n', '[T', '<cmd>tfirst<CR>', {noremap = true, silent = false}) -- first buffer
-map('n', ']T', '<cmd>tlast<CR>', {noremap = true, silent = false}) -- last buffer
+map('n', '[t', '<cmd>tprev<CR>', {noremap = true, silent = false}) -- previous tag
+map('n', ']t', '<cmd>tnext<CR>', {noremap = true, silent = false}) -- next tag
+map('n', '[T', '<cmd>tfirst<CR>', {noremap = true, silent = false}) -- first tag
+map('n', ']T', '<cmd>tlast<CR>', {noremap = true, silent = false}) -- last tag
 
-map('n', '[c', '<cmd>cprev<CR>', {noremap = true, silent = false}) -- previous buffer
-map('n', ']c', '<cmd>cnext<CR>', {noremap = true, silent = false}) -- next buffer
-map('n', '[C', '<cmd>cfirst<CR>', {noremap = true, silent = false}) -- first buffer
-map('n', ']C', '<cmd>clast<CR>', {noremap = true, silent = false}) -- last buffer
+map('n', '[q', '<cmd>cprev<CR>', {noremap = true, silent = false}) -- previous quickfix list
+map('n', ']q', '<cmd>cnext<CR>', {noremap = true, silent = false}) -- next quickfix list
+map('n', '[Q', '<cmd>cfirst<CR>', {noremap = true, silent = false}) -- first quickfix list
+map('n', ']Q', '<cmd>clast<CR>', {noremap = true, silent = false}) -- last quickfix list
 
 map('i', 'jk', '<ESC>', {noremap = true, silent = false})
 map('i', 'kj', '<ESC>', {noremap = true, silent = false})

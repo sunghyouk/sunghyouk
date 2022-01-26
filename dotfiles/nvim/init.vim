@@ -102,7 +102,7 @@ set rtp+=/usr/local/opt/fzf
 
 " =====Programming language setting
 let g:python_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/Users/sunghyouk/opt/anaconda3/bin/python3'
+let g:python3_host_prog='/opt/anaconda3/bin/python3'
 let g:ruby_host_prog='/Users/sunghyouk/.rbenv/shims/neovim-ruby-host'
 let g:perl_host_prog='/Users/sunghyouk/.plenv/shims/perl'
 let g:node_host_prog='/Users/sunghyouk/.nvm/versions/node/v16.13.1/bin/neovim-node-host'
