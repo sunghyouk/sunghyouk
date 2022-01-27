@@ -97,7 +97,7 @@ endfor
 set rtp+=/usr/local/opt/fzf
 
 "colorscheme nord
-"colorscheme dayfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
+colorscheme dayfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
 "colorscheme tokyonight " Storm, Night, Day " WARN: set in tokyonight.lua
 
 " =====Programming language setting
