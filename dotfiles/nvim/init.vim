@@ -96,6 +96,9 @@ endfor
 " =====FZF
 set rtp+=/usr/local/opt/fzf
 
+" =====사용자 추가 맞춤법 설정 파일
+setlocal spellfile=~/.config/nvim/custom.add
+
 "colorscheme nord
 colorscheme dayfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
 "colorscheme tokyonight " Storm, Night, Day " WARN: set in tokyonight.lua
