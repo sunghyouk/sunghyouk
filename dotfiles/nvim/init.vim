@@ -100,7 +100,7 @@ set rtp+=/usr/local/opt/fzf
 setlocal spellfile=~/.config/nvim/custom.add
 
 "colorscheme nord
-colorscheme dayfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
+colorscheme nordfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
 "colorscheme tokyonight " Storm, Night, Day " WARN: set in tokyonight.lua
 
 " =====Programming language setting

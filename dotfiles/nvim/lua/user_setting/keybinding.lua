@@ -21,15 +21,18 @@ map('n', ']q', '<cmd>cnext<CR>', {noremap = true, silent = false}) -- next quick
 map('n', '[Q', '<cmd>cfirst<CR>', {noremap = true, silent = false}) -- first quickfix list
 map('n', ']Q', '<cmd>clast<CR>', {noremap = true, silent = false}) -- last quickfix list
 
-map('i', 'jk', '<ESC>', {noremap = true, silent = false})
-map('i', 'kj', '<ESC>', {noremap = true, silent = false})
-
 -- for plugin
+-- startify
+map('n', '<F1>', '<cmd>Startify<CR>', {noremap = true, silent = true})
+
 -- nvim tree
 map('n', '<F2>', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
 
--- startify
-map('n', '<F1>', '<cmd>Startify<CR>', {noremap = true, silent = true})
+-- SymbolsOutline
+map('n', '<F3>', '<cmd>SymbolsOutline<CR>', {noremap = true, silent = true})
+
+-- TroubleToggle
+map('n', '<F4>', '<cmd>TroubleToggle<CR>', {noremap = true, silent = true})
 
 -- fzf
 map('n', '<leader>ff', '<cmd>Files<CR>', {noremap = true, silent =true})
@@ -52,17 +55,11 @@ map('v', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 -- markdown preview
 map('n', '<leader>m', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
 
--- TroubleToggle
-map('n', '<F4>', '<cmd>TroubleToggle<CR>', {noremap = true, silent = true})
-
--- SymbolsOutline
-map('n', '<F3>', '<cmd>SymbolsOutline<CR>', {noremap = true, silent = true})
+-- SidebarNvim
+map('n', '<leader><F2>', '<cmd>SidebarNvimToggle<CR>', {noremap = true, silent = true})
 
 -- Edit markdown from plasticboy/vim-markdown
 map('n', '<leader><F3>', '<cmd>Toc<CR>', {noremap = true, silent = true})
-
--- SidebarNvim
-map('n', '<leader><F2>', '<cmd>SidebarNvimToggle<CR>', {noremap = true, silent = true})
 
 -- PlugUpdate
 map('n', '<leader><F12>', '<cmd>PlugUpdate<CR>', {noremap = true, silent = true})
