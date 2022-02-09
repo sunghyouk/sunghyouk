@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin for python REPL, debug adapter protocol
     Plug 'kassio/neoterm'
+    Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
     Plug 'akinsho/toggleterm.nvim'
 
     " Plugin for markdown
@@ -170,6 +171,11 @@ let maplocalleader="\<space>"
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
+" =====Abbreviation
+ca ㅈ w
+ca ㅈㅂ wq
+ca ㅕㅔ up
+
 " =====C++
 " Compile
 nnoremap <silent> <F6> :<c-u>make %< <CR>
@@ -191,8 +197,17 @@ nmap <LocalLeader>wt :VimwikiTable<CR>
 nmap <Tab>d 0f]lli__date<Space><esc>
 
 " =====Neoterm
-nnoremap <silent> <localleader>cc :TREPLSendLine<CR>
-vnoremap <silent> <localleader>cc :TREPLSendSelection<CR>
+" Use gx{text-object} in normal mode
+nmap go <Plug>(neoterm-repl-send)
+" Send selected contents in visual mode
+xmap go <Plug>(neoterm-repl-send)
+" Send lines
+nmap goo <Plug>(neoterm-repl-send-line)
 
 " =====<ESC> 입력 시 <C-\><C-n> 실행 => 터미널 모드에서 기본 모드로 전환
 tnoremap <silent><ESC> <C-\><C-n>
+
+" Sniprun
+nmap <leader>ff <Plug>SnipRun
+nmap <leader>f <Plug>SnipRunOperator
+vmap f <Plug>SnipRun

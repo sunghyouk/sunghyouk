@@ -1,5 +1,7 @@
 
 " =====neoterm
+g:neoterm_bracketed_paste=1
+
 let g:neoterm_callbacks = {}
     function! g:neoterm_callbacks.before_new()
       if winwidth('.') > 100
