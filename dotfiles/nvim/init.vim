@@ -9,17 +9,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'nvim-lua/plenary.nvim' " NOTE: It is needed for 'telescope', 'gitsigns', 'null-ls'
     Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-telescope/telescope.nvim' " WARN: ripgrep, rg, ag, fd install needed in terminal
+    Plug 'nvim-telescope/telescope.nvim' " NOTE: ripgrep, rg, ag, fd install needed in terminal
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } " NOTE: for use telescope, needed
     
     " Plugin for todo
-    Plug 'folke/todo-comments.nvim' " WARN: ripgrep, rg, ag install needed in terminal
+    Plug 'folke/todo-comments.nvim' " NOTE: ripgrep, rg, ag install needed in terminal
     Plug 'folke/trouble.nvim' " NOTE: It is needed for 'todo-comments'
 
     " Plugin for coding
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'jose-elias-alvarez/null-ls.nvim'
-    Plug 'tpope/vim-commentary' " NOTE: for USAGE: gc{motion}
+    Plug 'tpope/vim-commentary' " NOTE: USAGE: gc{motion}
     Plug 'lukas-reineke/indent-blankline.nvim'
 
     " Plugin for Language support protocol/complete suggestion/code snippet
@@ -32,7 +32,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'williamboman/nvim-lsp-installer' " NOTE: lsp-installer
 
     " Plugin for git
-    Plug 'tpope/vim-fugitive' " enable Git (e.g., Gdiff)
+    Plug 'tpope/vim-fugitive' " NOTE: enable Git (e.g., Gdiff)
     Plug 'lewis6991/gitsigns.nvim'
 
     " Plugin for python REPL, debug adapter protocol
@@ -84,6 +84,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax' " NOTE: more syntax highlight and better conceal feature
 
+    " Plugin for startup time
+    Plug 'dstein64/vim-startuptime'
+
 call plug#end()
 
 " =====Call user lua setting
@@ -98,14 +101,13 @@ endfor
 set rtp+=/usr/local/opt/fzf
 
 " =====사용자 추가 맞춤법 설정 파일
-setlocal spellfile=~/.config/nvim/custom.add
+" setlocal spellfile=~/.config/nvim/custom.add
 
+colorscheme terafox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
 "colorscheme nord
-colorscheme nordfox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
 "colorscheme tokyonight " Storm, Night, Day " WARN: set in tokyonight.lua
 
 " =====Programming language setting
-let g:python_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/opt/anaconda3/bin/python3'
 let g:ruby_host_prog='/Users/sunghyouk/.rbenv/shims/neovim-ruby-host'
 let g:perl_host_prog='/Users/sunghyouk/.plenv/shims/perl'
@@ -211,3 +213,4 @@ tnoremap <silent><ESC> <C-\><C-n>
 nmap <leader>ff <Plug>SnipRun
 nmap <leader>f <Plug>SnipRunOperator
 vmap f <Plug>SnipRun
+

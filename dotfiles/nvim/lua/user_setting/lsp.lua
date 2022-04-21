@@ -64,7 +64,14 @@ vim.o.completeopt = 'menuone,noselect'
 cmp.setup {
 	-- Format the autocomplete menu
 	formatting = {
-		format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+		format = lspkind.cmp_format({
+            mode = 'symbol',
+            --with_text = false,
+            maxwidth = 50,
+            before = function (entry, vim_item)
+                return vim_item
+            end
+        })
 	},
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
