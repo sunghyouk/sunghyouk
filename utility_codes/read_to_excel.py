@@ -27,7 +27,7 @@ with open('book_list.csv', 'w', newline='', encoding='cp949') as f:
     for path, dir, files in os.walk(PATH):
         for file in files:
             current = os.path.join(path, file).replace('\\', '/')
-            if file.endswith('.pdf'):
+            if file.endswith('.pdf') or file.endswith('.epub'):
                 row = os.path.relpath(current, PATH).split(os.sep)
                 w.writerow(row)
 
