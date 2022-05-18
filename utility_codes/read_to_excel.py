@@ -27,7 +27,8 @@ with open('book_list.csv', 'w', newline='', encoding='cp949') as f:
     for path, dir, files in os.walk(PATH):
         for file in files:
             current = os.path.join(path, file).replace('\\', '/')
-            row = os.path.relpath(current, PATH).split(os.sep)
-            w.writerow(row)
+            if file.endswith('.pdf'):
+                row = os.path.relpath(current, PATH).split(os.sep)
+                w.writerow(row)
 
 df = pd.read_csv('book_list.csv', index_col=None, header=0, engine='python', encoding='cp949')
