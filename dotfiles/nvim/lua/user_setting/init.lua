@@ -30,6 +30,9 @@ require('user_setting/symbols')
 -- for toggleterm
 require('user_setting/toggleterm')
 
+-- for iron.nvim
+require('user_setting/iron')
+
 -- for keybinding
 require('user_setting/keybinding')
 

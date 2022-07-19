@@ -38,6 +38,7 @@ call plug#begin('~/.vim/plugged')
     " Plugin for python REPL, debug adapter protocol
     Plug 'kassio/neoterm'
     Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+    Plug 'hkupty/iron.nvim'
     Plug 'akinsho/toggleterm.nvim'
 
     " Plugin for markdown
@@ -103,7 +104,7 @@ set rtp+=/usr/local/opt/fzf
 " =====사용자 추가 맞춤법 설정 파일
 " setlocal spellfile=~/.config/nvim/custom.add
 
-colorscheme terafox " NOTE: dark: nightfox, nordfox, duskfox, light: dawnfox, dayfox
+colorscheme dawnfox " NOTE: dark: nightfox, nordfox, duskfox, terafox light: dawnfox, dayfox
 "colorscheme nord
 "colorscheme tokyonight " Storm, Night, Day " WARN: set in tokyonight.lua
 
@@ -164,7 +165,7 @@ au BufReadPost *
 \ endif
 
 " 파일을 저장할 때마다 코드 전체의 색인 파일을 새로 생성
-autocmd BufWritePost * call system("ctags -R")
+"autocmd BufWritePost * call system("ctags -R")
 
 " =====Setting for keymap
 let maplocalleader="\<space>"
