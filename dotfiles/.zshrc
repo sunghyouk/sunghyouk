@@ -118,51 +118,65 @@ source $ZSH/oh-my-zsh.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/sunghyouk/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/sunghyouk/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/sunghyouk/opt/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/sunghyouk/opt/anaconda3/bin:$PATH"
+        export PATH="/opt/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# alias vi, vim
 alias vim="nvim"
 alias vi="nvim"
 alias vimdiff="nvim -d"
 export EDITOR=/usr/local/bin/nvim
 
-# alias cat
 alias cat="bat"
+export BAT_THEME="Coldark-Cold"
 
 # alias ls, ll
 alias ls="lsd"
 alias ll="ls -alhF"
 
+# Path for custom shell script
+export PATH=~/bin:"$PATH"
+
+# C++
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# Java
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh" # This loads nvm 
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Ruby env
 export PATH={$Home}/.rbenv/bin:$PATH && \
 eval "$(rbenv init -)"
 
 # Perl env
+if (command -v perl && command -v cpanm) >/dev/null 2>&1; then
+  test -d "$HOME/perl5/lib/perl5" && eval $(perl -I "$HOME/perl5/lib/perl5" -Mlocal::lib)
+fi
+
 export PATH="$HOME/.plenv/bin:$PATH"
 eval "$(plenv init - zsh)"
 
-# Fuzzy finder
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# FZF custom function
+# Fuzzy finder custom function
 function fzfv()
 {
     fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
@@ -186,7 +200,7 @@ function fif() {
   --bind 'ctrl-u:half-page-up,ctrl-d:half-page-down'\
   --bind '?:toggle-preview,alt-w:toggle-preview-wrap'\
   --bind 'alt-v:execute(nvim {} >/dev/tty </dev/tty)'\
-  --preview "bat --theme='OneHalfDark' --style=numbers --color=always {} | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+  --preview "bat --theme='Coldark-Cold' --style=numbers --color=always {} | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
 function sdt() {
@@ -217,4 +231,9 @@ export FZF_CTRL_R_OPTS="
 --exact
 --expect=ctrl-x
 "
+
+# llvm path configuration
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
