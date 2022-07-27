@@ -3,7 +3,7 @@ local lualine = require('lualine')
 lualine.setup {
   options = {
     icons_enabled = true,
-    theme = 'nightfox', -- or tokyonight
+    theme = 'auto', -- or tokyonight, nightfox
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {"toggleterm", "NvimTree", "vista_kind"},

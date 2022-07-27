@@ -62,6 +62,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'shaunsingh/nord.nvim'
     Plug 'EdenEast/nightfox.nvim'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    Plug 'navarasu/onedark.nvim'
     
     " Plugin for Coding, Text - pairing parenthesis, selecting multi-identical text
     Plug 'tpope/vim-repeat'
@@ -104,7 +105,8 @@ set rtp+=/usr/local/opt/fzf
 " =====사용자 추가 맞춤법 설정 파일
 " setlocal spellfile=~/.config/nvim/custom.add
 
-colorscheme dawnfox " NOTE: dark: nightfox, nordfox, duskfox, terafox light: dawnfox, dayfox
+"colorscheme onedark
+"colorscheme dawnfox " NOTE: dark: nightfox, nordfox, duskfox, terafox light: dawnfox, dayfox
 "colorscheme nord
 "colorscheme tokyonight " Storm, Night, Day " WARN: set in tokyonight.lua
 
