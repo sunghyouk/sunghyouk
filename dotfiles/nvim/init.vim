@@ -44,8 +44,7 @@ call plug#begin('~/.vim/plugged')
     " Plugin for markdown
     Plug 'godlygeek/tabular'
     Plug 'plasticboy/vim-markdown'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']} 
-    
+
     " Plugin for Passive setting
     Plug 'blueyed/vim-diminactive' " NOTE: inactive buffer will gray
     Plug 'folke/which-key.nvim'
@@ -75,19 +74,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'nelstrom/vim-visual-star-search' " NOTE: <leader>* - vim will recursively vimgrep for the word under the cursor or the visual selection. 
     Plug 'tpope/vim-abolish' " NOTE: :S(ubvert)/{man,dog}/{dog,man}/g
     Plug 'lukas-reineke/headlines.nvim'
-
-    " Plugin for vimwiki
-    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-
-    " Plugin for vimtex
-    Plug 'lervag/vimtex'
     
     " Plugin for pandoc
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax' " NOTE: more syntax highlight and better conceal feature
-
-    " Plugin for startup time
-    Plug 'dstein64/vim-startuptime'
 
 call plug#end()
 
@@ -186,20 +176,6 @@ ca ㅕㅔ up
 nnoremap <silent> <F6> :<c-u>make %< <CR>
 " Execute
 nnoremap <silent> <F7> :<c-u>term ./%< <CR>
-
-" =====Vimwiki
-command! WikiIndex :VimwikiIndex
-nmap <LocalLeader>ww <Plug>VimwikiIndex
-"nmap <LocalLeader>wt <Plug>VimwikiTabIndex
-nmap <LocalLeader>ws <Plug>VimwikiUISelect
-"nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
-"nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
-"nmap <LocalLeader>w<LocalLeader>t <Plug>VimwikiTabMakeDiaryNote
-"nmap <LocalLeader>w<LocalLeader>y <Plug>VimwikiMakeYesterdayDiaryNote
-nmap <LocalLeader>wh <Plug>Vimwiki2HTML
-nmap <LocalLeader>whh <Plug>Vimwiki2HTMLBrowse
-nmap <LocalLeader>wt :VimwikiTable<CR>
-nmap <Tab>d 0f]lli__date<Space><esc>
 
 " =====Neoterm
 " Use gx{text-object} in normal mode

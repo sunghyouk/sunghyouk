@@ -52,9 +52,6 @@ map('n', '<leader>tk', '<cmd>Telescope keymaps<CR>', {noremap = true, silent =tr
 map('n', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 map('v', '<leader>/', '<cmd>Commentary<CR>', {noremap = true, silent = true})
 
--- markdown preview
-map('n', '<leader>m', '<cmd>MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
-
 -- SidebarNvim
 map('n', '<leader><F2>', '<cmd>SidebarNvimToggle<CR>', {noremap = true, silent = true})
 
@@ -66,7 +63,6 @@ map('n', '<leader><F12>', '<cmd>PlugUpdate<CR>', {noremap = true, silent = true}
 map('n', '<F12>', '<cmd>!ctags -R<CR>', {noremap = true, silent = true})
 
 -- NOTE: 이하 keymapping은 init.vim에 있음
--- vimwiki
 
 -- NOTE: lsp.lua에 설정되어 있음
 -- lsp_config
@@ -87,4 +83,3 @@ map('n', '<F12>', '<cmd>!ctags -R<CR>', {noremap = true, silent = true})
 -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
