@@ -23,10 +23,6 @@ neovim의 `init.vim`, tmux의 config file 등을 저장해 놓았습니다.
 
 공부하다 생긴 코드를 올리는 곳
 
-### sunghyouk.github.io
-
-블로그 및 블로그에 필요한 파일이 있는 곳
-
 ### 나머지
 
 책에서 제공한 코드와 예제가 있거나  
