@@ -3,7 +3,9 @@
 ## Intro
 
 2021-09-15 (Wed) 15:11
-sunghyouk.github.io 에 블로그를 만들고, 처음 github를 시작합니다.
+sunghyouk.github.io 에 블로그를 만들었지만 지웠고!,  
+(현재 velog 사용 중: https://velog.io/@sakebite)  
+처음 github를 시작합니다.
 
 Hi there 👋
 
